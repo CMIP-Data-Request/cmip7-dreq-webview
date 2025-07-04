@@ -29,11 +29,11 @@ if version != version_json.get("version"):
     raise Exception(f"Version mismatch: {version} != {version_json.get('version')}")
 
 # Output directory with versioning
-BASE_OUTPUT = 'c7dreq'
+BASE_OUTPUT = 'docs'
 OUTPUT_DIR = os.path.join(BASE_OUTPUT, version)
 
 def path_in_version(subpath):
-    return f"/c7dreq/{version}/{subpath}"
+    return f"/{BASE_OUTPUT}/{version}/{subpath}"
 
 # === STEP 1: LOAD & MERGE DATA ===
 main_data = {}
