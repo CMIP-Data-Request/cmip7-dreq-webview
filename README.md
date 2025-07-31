@@ -4,10 +4,11 @@ A static HTML-based web view of the CMIP7 Data Request, featuring interlinked re
 The web content is hosted via GitHub Pages:
 - https://CMIP-Data-Request.github.io/cmip7-dreq-webview/index.html (Version index)
 - https://CMIP-Data-Request.github.io/cmip7-dreq-webview/latest/index.html (Fixed link to the latest version)
-- https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.2.1/index.html (Direct Link to v1.2.1, the current latest version)
+- https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.2.2/index.html (Direct Link to v1.2.2, the current latest version)
 
 Old versions (versions `<v1.2` are not supported):
-- https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.2/index.html
+- [1.2.1](https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.2.1/index.html)
+- [1.2](https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.2/index.html)
 
 ## Features
 
