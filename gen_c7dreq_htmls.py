@@ -13,6 +13,7 @@ version="v1.1"
 version="v1.2"
 version="v1.2.1"
 version="v1.2.2"
+#version="v1.2.3"
 
 full_content = dc.load(version=version, export="release", consolidate=True)
 content_dic = dt.get_transformed_content(version=version)
@@ -99,7 +100,7 @@ for category, extra_records in extra.items():
 
 # Extract description strings - category and fields per category
 #   Adapted dump_transformation functions for consistent
-#    renaming of categories and fields 
+#    renaming of categories and fields
 category_desc = {}
 field_desc = {}
 transform_settings = dt.get_transform_settings(version=version)["one_to_transform"]
@@ -143,7 +144,7 @@ for category, category_content in full_content["Data Request"].items():
                 field_desc[formatted_category][formatted_field] = desc_tmp
             else:
                 field_desc[formatted_category][formatted_field] = ""
-             
+
         field_desc[formatted_category][formatted_field] = field_desc[formatted_category][formatted_field].strip()
 
 for i in category_desc:
@@ -155,11 +156,13 @@ for i in field_desc:
 
 for cat in data_all:
     if not cat in category_desc:
-        print(f"ERROR: Missing category description for {cat}")    
-for cat in data_all:    
+        print(f"ERROR: Missing category description for {cat}")
+for cat in data_all:
     for rec in data_all[cat]:
         for f in data_all[cat][rec]:
-            if not f in field_desc[cat]:
+            if not cat in field_desc:
+                print(f"ERROR: '{cat}' missing in field descriptions {f}")
+            elif not f in field_desc[cat]:
                 print(f"ERROR: Missing field description for {cat} {f}")
 
 # === CREATE OUTPUT DIRECTORIES ===
@@ -226,10 +229,10 @@ def make_link(value, uid_lookup, current_dir=""):
     if isinstance(value, str) and value.startswith("link::"):
         uid = value.split("::")[1]
         return format_link(uid, single=True)
-    
+
     elif isinstance(value,str) and (value.startswith("http://") or value.startswith("https://")):
         return f'<a href="{value}" target="_blank">{escape(value)}</a>'
-    
+
     elif isinstance(value, str) and "https://" in value:
         value = linkify_text(value)
         return value
@@ -251,10 +254,10 @@ def make_link(value, uid_lookup, current_dir=""):
             visible = ", ".join(links[:5])
             hidden = ", ".join(links)
             return f"""<details><summary><span class="short-view">{visible} ... and {len(links) - 5} more</span><span class="full-view">{hidden}</span></summary></details>"""
-    
+
     else:
         return escape(str(value))
-    
+
 def build_uid_to_category_map(data_all):
     uid_to_category = {}
     for category, records in data_all.items():
@@ -263,7 +266,7 @@ def build_uid_to_category_map(data_all):
         for uid in records:
             uid_to_category[uid] = category
     return uid_to_category
-    
+
 def build_reverse_links_map(data_all):
     reverse_links = {}
 
@@ -353,7 +356,8 @@ write_file("index.html", index_html, title=f"DReq {version} Index", style_locati
 for category, records in main_data.items():
     html = f"<h1>Category: {escape(category)} ({version})</h1>"
     html += f"<p><a href='index.html'>Back to Category Index</a></p><ul>"
-    if category_desc.get(category) != "":
+    if category_desc.get(category) not in ["", None]:
+        print(f"category {category}: '{category_desc.get(category)}'")
         html += f"<p><strong>Category Description:</strong> {escape(category_desc.get(category))}</p>"
     link_html = list()
     for record_id, record in records.items():
@@ -378,17 +382,22 @@ for uid, obj in uid_map.items():
 
     html = f"<h1>{category} record: {escape(record_id)} ({version})</h1>"
     html += f"<p><a href='../{category}.html'>Back to {escape(category)}</a> | <a href='../index.html'>Category Index</a></p>"
-    if category_desc.get(category) != "":
+    if category_desc.get(category) not in ["", None]:
         html += f"<br><details><summary><strong>Category Description</strong></summary><p>{escape(category_desc.get(category))}</p></details><br><br>"
+    else:
+        print(f"ERROR: '{category}' has no description")
     html += "<table><tr><th>Attribute</th><th>Value</th></tr>"
     for attr, value in main_record.items():
         if extra_record:
             if attr in extra_record:
                 continue
         formatted_value = make_link(value, uid_record_lookup, current_dir="record")
-        if field_desc[category].get(attr) != "":
+        if category not in field_desc:
+            print(f"ERROR: category '{category}' not in field description")
+        elif field_desc[category].get(attr) not in ["", None]:
             html += f"<tr><td class='field_name' title='{escape(field_desc[category].get(attr))}'><strong>{escape(attr)}</strong></td><td>{formatted_value}</td></tr>"
         else:
+            print(f"WARNING: field description of category '{category}' lacks attribute '{attr}'")
             html += f"<tr><td class='field_name'><strong>{escape(attr)}</strong></td><td>{formatted_value}</td></tr>"
     html += "</table>"
 
