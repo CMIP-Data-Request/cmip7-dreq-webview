@@ -6,9 +6,11 @@ The web content is hosted via GitHub Pages:
 - https://CMIP-Data-Request.github.io/cmip7-dreq-webview/latest/index.html (Fixed link to the latest version)
 - https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.2.2/index.html (Direct Link to v1.2.2, the current latest version)
 
-Old versions (versions `<v1.2` are not supported):
+Old versions:
 - [1.2.1](https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.2.1/index.html)
 - [1.2](https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.2/index.html)
+- [1.1](https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.1/index.html)
+- [1.0](https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.0/index.html)
 
 ## Features
 
@@ -19,14 +21,14 @@ Old versions (versions `<v1.2` are not supported):
 
 ## Background
 
-This project was developed as part of the [CMIP Data Request WebGUI (https://cmiphub.dkrz.de)](https://cmiphub.dkrz.de) effort to provide a web view 
+This project was developed as part of the [CMIP Data Request WebGUI (https://cmiphub.dkrz.de)](https://cmiphub.dkrz.de) effort to provide a web view
 aligned with a similar tool created by Martin Juckes for the CMIP6 Data Request (https://clipc-services.ceda.ac.uk/dreq/).
 
 ## License
 
-This project is licensed under the MIT License.  
-(c) 2025 CMIP IPO 
+This project is licensed under the MIT License.
+(c) 2025 CMIP IPO
 
 This repository provides static HTML pages that can be freely reused and hosted elsewhere under the terms of the license.
-  
+
 Please note: This project is intended for direct use or integration as-is. If you reuse or mirror this content, please preserve proper attribution and licensing.
