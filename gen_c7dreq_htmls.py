@@ -13,6 +13,8 @@ version="v1.1"
 version="v1.2"
 version="v1.2.1"
 version="v1.2.2"
+version="v1.2.2.1"
+version="v1.2.2.2"
 #version="v1.2.3"
 
 full_content = dc.load(version=version, export="release", consolidate=True)
@@ -20,8 +22,8 @@ content_dic = dt.get_transformed_content(version=version)
 DR = dr.DataRequest.from_separated_inputs(**content_dic)
 
 # === SETTINGS ===
-INPUT_FILES = [dc._dreq_res + "/" + version + '/VS_release_content.json',
-               dc._dreq_res + "/" + version + '/DR_release_content.json']
+INPUT_FILES = [dc._dreq_res + "/" + version + '/VS_release_consolidate_content.json',
+               dc._dreq_res + "/" + version + '/DR_release_consolidate_content.json']
 
 # === Extract version ===
 with open(INPUT_FILES[0], 'r', encoding='utf-8') as f:
