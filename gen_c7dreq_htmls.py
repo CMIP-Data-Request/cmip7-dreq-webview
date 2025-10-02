@@ -14,7 +14,7 @@ version="v1.2"
 version="v1.2.1"
 version="v1.2.2"
 version="v1.2.2.1"
-version="v1.2.2.2"
+#version="v1.2.2.2"
 #version="v1.2.3"
 
 full_content = dc.load(version=version, export="release", consolidate=True)
@@ -326,7 +326,9 @@ def render_reverse_links_section(uid, reverse_links, data_all, uid_to_category):
             label_parts = []
             if 'cmip7_compound_name' in source_record:
                 label_parts.append(source_record['cmip7_compound_name'])
-            if 'name' in source_record:
+            if 'cmip6_compound_name' in source_record:
+                label_parts.append(source_record['cmip6_compound_name'])
+            elif 'name' in source_record:
                 label_parts.append(source_record['name'])
             label = " / ".join(label_parts)
             if 'title' in source_record and label_parts:
