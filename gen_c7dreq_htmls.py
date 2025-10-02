@@ -14,7 +14,7 @@ version="v1.2"
 version="v1.2.1"
 version="v1.2.2"
 version="v1.2.2.1"
-#version="v1.2.2.2"
+version="v1.2.2.2"
 #version="v1.2.3"
 
 full_content = dc.load(version=version, export="release", consolidate=True)
@@ -196,7 +196,7 @@ def write_file(path, content, title="", style_location="../"):
 def link_label(uid, uid_lookup):
     record = uid_lookup.get(uid, {})
     compound = record.get("cmip7_compound_name")
-    name = record.get("name")
+    name = record.get("cmip6_compound_name", record.get("name"))
     title = record.get("title")
 
     if compound and name:
