@@ -89,7 +89,7 @@
 <body>
 
 <h1>CMIP7 Variable Index</h1>
-<p><a href='../index.html'>Back to Version Index</a></p>
+<p><a href='index.html'>Back to Version Index</a></p>
 <br>
 <div class="filters">
     <input id="f_cmip7" placeholder="Search cmip7 name…">
@@ -186,7 +186,7 @@ document.querySelectorAll(".filters input").forEach(inp => {
     inp.addEventListener("input", applyFilters);
 });
 
-fetch("/variable_index.json")
+fetch("variable_index.json")
     .then(r => r.json())
     .then(json => {
         variableData = json;
