@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CMIP7 Variable Search</title>
+<style>
+    body {
+        font-family: sans-serif;
+        margin: 2rem;
+        background: #fafafa;
+    }
+
+    h1 {
+        margin-bottom: 1rem;
+    }
+
+    .filters {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.7rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .filters input {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    table {
+        width: 100%;
+        min-width: 720px;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border-radius: 6px;
+        overflow: auto;
+    }
+
+    th, td {
+        padding: 0.6rem 0.75rem;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+        vertical-align: top;
+        white-space: normal;
+    }
+
+    td:nth-child(2), th:nth-child(2) {
+        max-width: 150px;
+    }
+    td:nth-child(3), th:nth-child(3) {
+        max-width: 200px;
+    }
+    td:nth-child(4), th:nth-child(4) {
+        max-width: 150px;
+    }
+    td:nth-child(5), th:nth-child(5) {
+        max-width: 150px;
+    }
+    td:nth-child(6), th:nth-child(6) {
+        max-width: 250px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    th {
+        background: #f0f0f0;
+        font-weight: bold;
+    }
+
+    tr:hover {
+        background: #f9f9f9;
+    }
+
+    a {
+        color: #0077cc;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+</style>
+</head>
+<body>
+
+<h1>CMIP7 Variable Index</h1>
+<p><a href='../index.html'>Back to Version Index</a></p>
+<br>
+<div class="filters">
+    <input id="f_cmip7" placeholder="Search cmip7 name…">
+    <input id="f_cmip6" placeholder="Search cmip6 name…">
+    <input id="f_long" placeholder="Search long_name…">
+    <input id="f_root" placeholder="Search root_name…">
+    <input id="f_brand" placeholder="Search branding_label…">
+    <input id="f_std" placeholder="Search standard_name…">
+    <input id="f_desc" placeholder="Search description…">
+</div>
+
+<table id="varTable">
+    <thead>
+        <tr>
+            <th>cmip7 name</th>
+            <th>cmip6 name</th>
+            <th>long_name</th>
+            <th>root_name</th>
+            <th>branding_label</th>
+            <th>standard_name</th>
+            <th>description</th>
+        </tr>
+    </thead>
+    <tbody id="varBody">
+        <tr><td colspan="7">Loading data…</td></tr>
+    </tbody>
+</table>
+
+<script>
+let variableData = {};
+let rows = [];
+
+function loadTable() {
+    const tbody = document.getElementById("varBody");
+    tbody.innerHTML = "";
+
+    for (const varname in variableData) {
+        const v = variableData[varname];
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td><a href="${v.url}" target="_blank">${varname}</a></td>
+            <td>${v.cmip6_name || ""}</td>
+            <td>${v.long_name || ""}</td>
+            <td>${v.root_name || ""}</td>
+            <td>${v.branding_label || ""}</td>
+            <td>${v.standard_name || ""}</td>
+            <td>${v.description || ""}</td>
+        `;
+
+        rows.push({
+            element: tr,
+            values: {
+                cmip7: varname.toLowerCase(),
+                cmip6: (v.cmip6_name || "").toLowerCase(),
+                root: (v.root_name || "").toLowerCase(),
+                long: (v.long_name || "").toLowerCase(),
+                brand: (v.branding_label || "").toLowerCase(),
+                std: (v.standard_name || "").toLowerCase(),
+                desc: (v.description || "").toLowerCase()
+            }
+        });
+
+        tbody.appendChild(tr);
+    }
+}
+
+function applyFilters() {
+    const q = {
+        cmip7: document.getElementById("f_cmip7").value.toLowerCase(),
+        cmip6: document.getElementById("f_cmip6").value.toLowerCase(),
+        root: document.getElementById("f_root").value.toLowerCase(),
+        long: document.getElementById("f_long").value.toLowerCase(),
+        brand: document.getElementById("f_brand").value.toLowerCase(),
+        std: document.getElementById("f_std").value.toLowerCase(),
+        desc: document.getElementById("f_desc").value.toLowerCase()
+    };
+
+    rows.forEach(r => {
+        const match =
+            r.values.cmip7.includes(q.cmip7) &&
+            r.values.cmip6.includes(q.cmip6) &&
+            r.values.root.includes(q.root) &&
+            r.values.long.includes(q.long) &&
+            r.values.brand.includes(q.brand) &&
+            r.values.std.includes(q.std) &&
+            r.values.desc.includes(q.desc);
+
+        r.element.style.display = match ? "" : "none";
+    });
+}
+
+document.querySelectorAll(".filters input").forEach(inp => {
+    inp.addEventListener("input", applyFilters);
+});
+
+fetch("/variable_index.json")
+    .then(r => r.json())
+    .then(json => {
+        variableData = json;
+        loadTable();
+    })
+    .catch(err => {
+        const tbody = document.getElementById("varBody");
+        tbody.innerHTML = `<tr><td colspan="7">Error loading data: ${err}</td></tr>`;
+    });
+</script>
+
+</body>
+</html>

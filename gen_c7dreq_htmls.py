@@ -559,3 +559,31 @@ for uid, obj in uid_map.items():
 
 print()
 print(f"HTML files generated in '{OUTPUT_DIR}/'")
+
+
+# === Variable Search Index ===
+vi_file = f"{OUTPUT_DIR}/../variable_index.json"
+var_index = dict()
+
+for var, varatts in data_all["variables"].items():
+    php = data_all["physical_parameters"][
+        cat_link_to_uid["physical_parameters"][
+            varatts["physical_parameter"].split("::")[1]
+        ]
+    ]
+    cfsn = data_all["cf_standard_names"][
+        cat_link_to_uid["cf_standard_names"][php["cf_standard_name"].split("::")[1]]
+    ]
+    var_index[varatts["cmip7_compound_name"]] = {
+        "cmip6_name": varatts["cmip6_compound_name"],
+        "long_name": php["title"],
+        "root_name": varatts["branded_variable_name"].split("_")[0],
+        "branding_label": varatts["branded_variable_name"].split("_")[1],
+        "standard_name": cfsn["name"],
+        "description": varatts.get("description", ""),
+        "url": f"/latest/u/{sanitize(varatts['uid'])}.html",
+    }
+
+with open(vi_file, "w") as f:
+    json.dump(var_index, f, indent=4)
+print(f"Variable index written to '{vi_file}'")
