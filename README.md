@@ -21,6 +21,7 @@ Old versions:
 
 ## Features
 
+- Tool to search variables of the latest versions by multiple attributes
 - Static HTML pages organized by category and record
 - Cross-linked records using unique identifiers
 - Expandable sections for long lists of values
@@ -28,8 +29,10 @@ Old versions:
 
 ## Background
 
-This project was developed as part of the [CMIP Data Request WebGUI (https://cmiphub.dkrz.de)](https://cmiphub.dkrz.de) effort to provide a web view
-aligned with a similar tool created by Martin Juckes for the CMIP6 Data Request (https://clipc-services.ceda.ac.uk/dreq/).
+This project was developed at the [German Climate Computing Center (DKRZ)](https://www.dkrz.de/en/dkrz-partner-for-climate-research?set_language=en) 
+as part of the [CMIP Data Request WebGUI (https://cmiphub.dkrz.de)](https://cmiphub.dkrz.de) effort, providing a web view
+aligned with a similar tool created by Martin Juckes for the [CMIP6 Data Request](https://clipc-services.ceda.ac.uk/dreq/).
+Oversight and coordination of the CMIP7 Data Request are provided by the CMIP International Project Office (CMIP IPO).
 
 ## License
 
