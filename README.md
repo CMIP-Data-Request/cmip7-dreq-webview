@@ -1,11 +1,12 @@
 # CMIP7 Data Request Webview
 
-A static HTML-based web view of the CMIP7 Data Request, featuring interlinked records and a tool for variable search, hosted via GitHub Pages.
+A static HTML-based web view of the CMIP7 Data Request, featuring interlinked records as well as tools
+for variable search and data request changes hosted via GitHub Pages.
 
-
-Main access point: https://CMIP-Data-Request.github.io/cmip7-dreq-webview/index.html
-
-Direct link to the variable search tool: https://CMIP-Data-Request.github.io/cmip7-dreq-webview/variable_search.html
+- **Main access point**: https://CMIP-Data-Request.github.io/cmip7-dreq-webview/index.html
+- **Variable search tool**: https://CMIP-Data-Request.github.io/cmip7-dreq-webview/variable_search.html
+- **Request changes**: https://CMIP-Data-Request.github.io/cmip7-dreq-webview/dreq_changes.html
+- **Variable changes**: https://CMIP-Data-Request.github.io/cmip7-dreq-webview/variable_changes.html
 
 Direct links to the CMIP7 Data Request web views of the various data request versions:
 - https://CMIP-Data-Request.github.io/cmip7-dreq-webview/latest/index.html (Fixed link to the latest version)
@@ -22,6 +23,8 @@ Old versions:
 ## Features
 
 - Tool to search variables of the latest versions by multiple attributes
+- Tool to browse changes of requests by different opportunities and mips by release
+- Tool to browse changes of variable definitions by release
 - Static HTML pages organized by category and record
 - Cross-linked records using unique identifiers
 - Expandable sections for long lists of values
