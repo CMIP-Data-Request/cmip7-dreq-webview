@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CMIP7-AFT Data Request — Request Changes by Release</title>
+
+<style>
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    margin: 1.5rem;
+    color: #222;
+    background: #fbfbfb;
+    max-width: 1000px;
+  }
+
+  h1 { margin-bottom: 0.25rem; }
+  p.lead { margin-top:0; color:#666; margin-bottom:1rem; }
+
+  h2.version { font-size:1.35rem; margin-top:1.5rem; color:#1f3b6f; border-bottom:2px solid #e0e6f0; padding-bottom:0.25rem; }
+  section.kind h3 { font-size:1.1rem; color:#235; margin:0.6rem 0 0.25rem 0; border-left:4px solid #e6eefb; padding-left:0.6rem; }
+
+  .obj { margin:0.5rem 0; padding:0.6rem; border:1px solid #ddd; border-radius:6px; background:#fff; }
+  details.obj-details summary { font-weight:600; cursor:pointer; display:flex; justify-content:space-between; }
+  details.obj-details[open] summary { color:#0066cc; }
+  .obj-removed { color:#9b1c1c; font-weight:700; background:#fff6f6; border:1px solid #f1caca; padding:0.4rem; border-radius:4px; }
+
+  .change-list { margin:0.6rem 0 0 0; padding-left:1rem; }
+  .change-item { margin:0.35rem 0; padding:0.35rem 0; }
+  .change-item strong { display:block; margin-bottom:0.25rem; }
+
+  ul.short-list { margin:0; padding-left:1.1rem; }
+  ul.short-list li { margin:0.15rem 0; }
+
+  table.var-table {
+    border-collapse: collapse;
+    margin-top:0.3rem;
+    table-layout: fixed;
+    width: 100%;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+  table.var-table th, table.var-table td {
+    border:1px solid #ddd;
+    padding:0.25rem 0.5rem;
+    text-align:left;
+    overflow-wrap: break-word;
+  }
+  table.var-table th { background:#f4f7fb; }
+
+  a.var-link { color:#0066cc; text-decoration:none; }
+  a.var-link:hover { text-decoration:underline; }
+
+</style>
+</head>
+<body>
+<h1>CMIP7-AFT Data Request — Request Changes by Release</h1>
+<br>
+<p class="lead">Browse changes regarding requested experiments, variables or ensemble members introduced with successive Data Request releases. Click a version to expand, then open Opportunities or MIPs to see what changed.</p>
+<p><a href='index.html'>Back to Version Index</a></p>
+<br><div id="content">Loading...</div>
+
+<script>
+(async function() {
+
+const CHANGES_PATH = 'dreq_changes.json';
+const VAR_INDEX_PATH = 'variable_index.json';
+const DREQ_INDEX_PATH = 'dreq_index.json';
+
+async function loadJSON(url){
+  const res = await fetch(url);
+  if(!res.ok) throw new Error('Failed to load '+url+': '+res.status);
+  return res.json();
+}
+
+let changes, varIndex, dreqIndex;
+try {
+  [changes, varIndex, dreqIndex] = await Promise.all([
+    loadJSON(CHANGES_PATH),
+    loadJSON(VAR_INDEX_PATH),
+    loadJSON(DREQ_INDEX_PATH)
+  ]);
+} catch(e){
+  document.getElementById('content').innerHTML = '<p style="color:#900">Error loading JSON files: '+e.message+'</p>';
+  console.error(e);
+  return;
+}
+
+// Maps for easy lookup
+const experimentsMap = dreqIndex.experiments || {};
+const opportunitiesMap = dreqIndex.opportunities || {};
+const mipsMap = dreqIndex.mips || {};
+const vars = varIndex || {};
+
+function labelForDreq(uid) {
+  return experimentsMap[uid] || opportunitiesMap[uid] || mipsMap[uid] || uid;
+}
+function typeOfObject(uid){
+  if(opportunitiesMap.hasOwnProperty(uid)) return 'opportunity';
+  if(mipsMap.hasOwnProperty(uid)) return 'mip';
+  return null;
+}
+function makeVarRow(uid){
+  const v = vars[uid];
+  const tr = document.createElement('tr');
+  const fields = ['cmip7_name','cmip6_name','long_name','standard_name'];
+  for(const f of fields){
+    const td = document.createElement('td');
+    if(f==='cmip7_name' && v && v.url){
+      const a = document.createElement('a');
+      a.href = v.url;
+      a.target='_blank';
+      a.rel='noopener';
+      a.className='var-link';
+      a.textContent = v.cmip7_name || uid;
+      td.appendChild(a);
+    } else {
+      td.textContent = (v && v[f]) || '';
+    }
+    tr.appendChild(td);
+  }
+  return tr;
+}
+
+function hasRealChanges(ch){
+  const keys = Object.keys(ch);
+  if(keys.length===1 && keys[0]==='state'){
+    if(ch.state==='added'||ch.state==='removed'||ch.state===false) return true;
+    return false;
+  }
+  if(ch.state==='added'||ch.state==='removed'||ch.state===false) return true;
+  if(ch.ensemble_size) return true;
+  if(ch.experiments_added?.length || ch.experiments_removed?.length) return true;
+  if(ch.variables_added?.length || ch.variables_removed?.length) return true;
+  if(ch.opportunities_added?.length || ch.opportunities_removed?.length) return true;
+  return false;
+}
+
+function createUidList(uids){
+  const ul = document.createElement('ul');
+  ul.className='short-list';
+  uids.slice().sort().forEach(uid=>{
+    const li = document.createElement('li');
+    li.textContent = labelForDreq(uid);
+    ul.appendChild(li);
+  });
+  return ul;
+}
+
+// Build HTML
+const container = document.getElementById('content');
+container.innerHTML='';
+
+const versions = Object.keys(changes||{}).sort((a,b)=>{
+  // simple descending numeric-ish sort
+  const pa=a.split(/[\.-]/).map(s=>/^\d+$/.test(s)?parseInt(s,10):s);
+  const pb=b.split(/[\.-]/).map(s=>/^\d+$/.test(s)?parseInt(s,10):s);
+  for(let i=0;i<Math.max(pa.length,pb.length);i++){
+    if(pa[i]===undefined) return 1;
+    if(pb[i]===undefined) return -1;
+    if(pa[i]===pb[i]) continue;
+    if(typeof pa[i]==='number' && typeof pb[i]==='number') return pb[i]-pa[i];
+    return (''+pb[i]).localeCompare(''+pa[i]);
+  }
+  return 0;
+});
+
+if(!versions.length){
+  container.textContent='No changes available.';
+  return;
+}
+
+for(const version of versions){
+  const vchanges = changes[version] || {};
+  const vdiv = document.createElement('div');
+  const vh2 = document.createElement('h2');
+  vh2.className='version';
+  vh2.textContent=version;
+  vdiv.appendChild(vh2);
+
+
+  function renderKind(kindName){
+      // collect all objects for this kind that have meaningful changes
+      const uidsForKind = [];
+      for(const objUid of Object.keys(vchanges)){
+          if(typeOfObject(objUid)!== (kindName==='opportunities'?'opportunity':'mip')) continue;
+          if(hasRealChanges(vchanges[objUid])) uidsForKind.push(objUid);
+      }
+      if(!uidsForKind.length) return null;
+
+      // create a <details> wrapper for the entire kind section
+      const kindDetails = document.createElement('details');
+      kindDetails.open = false; // collapsed by default
+      kindDetails.className = 'kind-details';
+
+      const kindSummary = document.createElement('summary');
+      kindSummary.textContent = kindName.charAt(0).toUpperCase() + kindName.slice(1);
+      kindSummary.style.fontSize = '1.1rem';
+      kindSummary.style.fontWeight = '600';
+      kindSummary.style.cursor = 'pointer';
+      kindSummary.style.margin = '0.3rem 0';
+      kindDetails.appendChild(kindSummary);
+
+      uidsForKind.sort((a,b)=>labelForDreq(a).localeCompare(labelForDreq(b)));
+
+      for(const objUid of uidsForKind){
+          const ch = vchanges[objUid];
+          const card = document.createElement('div'); 
+          card.className='obj';
+
+          // REMOVED objects
+          if(ch.state==='removed'||ch.state===false){
+              const removedBox = document.createElement('div'); 
+              removedBox.className='obj-removed';
+
+              if(typeOfObject(objUid) === 'opportunity'){
+                  removedBox.textContent = labelForDreq(objUid) +
+                    ' was removed from the Data Request or potentially merged with another opportunity.';
+              } else {
+                  removedBox.textContent = labelForDreq(objUid) +
+                    ' was removed from the Data Request.';
+              }
+
+              card.appendChild(removedBox); 
+              kindDetails.appendChild(card); 
+              continue;
+          }
+
+          // ADDED objects
+          if(ch.state==='added'){
+              const addedBox = document.createElement('div'); 
+              addedBox.className='obj-removed';
+              addedBox.style.background='#f0fff0'; 
+              addedBox.style.color='#1a7a1a';
+              addedBox.textContent=labelForDreq(objUid)+' was added to the Data Request.';
+              card.appendChild(addedBox); 
+              kindDetails.appendChild(card); 
+              continue;
+          }
+
+          // Objects with other changes
+          const details=document.createElement('details'); 
+          details.className='obj-details';
+          const summary=document.createElement('summary'); 
+          summary.textContent=labelForDreq(objUid); 
+          details.appendChild(summary);
+
+          const content=document.createElement('div'); 
+          content.className='content';
+
+          // ensemble size
+          if(ch.ensemble_size){
+              const div=document.createElement('div'); 
+              div.className='change-item';
+              div.innerHTML='<strong>Ensemble size changed</strong><div>'+ch.ensemble_size+'</div>';
+              content.appendChild(div);
+          }
+
+          // experiments removed
+          if(ch.experiments_removed?.length){
+              const div=document.createElement('div'); div.className='change-item';
+              const strong=document.createElement('strong'); 
+              strong.textContent='The following experiments are no longer requested:';
+              div.appendChild(strong); 
+              div.appendChild(createUidList(ch.experiments_removed)); 
+              content.appendChild(div);
+          }
+
+          // experiments added
+          if(ch.experiments_added?.length){
+              const div=document.createElement('div'); div.className='change-item';
+              const strong=document.createElement('strong'); 
+              strong.textContent='The following experiments are now requested:';
+              div.appendChild(strong); 
+              div.appendChild(createUidList(ch.experiments_added)); 
+              content.appendChild(div);
+          }
+
+          // variables removed
+          if(ch.variables_removed?.length){
+              const div=document.createElement('div'); div.className='change-item';
+              const strong=document.createElement('strong'); 
+              strong.textContent='The following variables are no longer requested:';
+              div.appendChild(strong);
+              const table=document.createElement('table'); table.className='var-table';
+              const thead=document.createElement('thead'); 
+              thead.innerHTML='<tr><th>cmip7_compound_name</th><th>cmip6_compound_name</th><th>long_name</th><th>standard_name</th></tr>';
+              table.appendChild(thead);
+              const tbody=document.createElement('tbody');
+              ch.variables_removed.slice().sort().forEach(uid=>tbody.appendChild(makeVarRow(uid)));
+              table.appendChild(tbody); div.appendChild(table); content.appendChild(div);
+          }
+
+          // variables added
+          if(ch.variables_added?.length){
+              const div=document.createElement('div'); div.className='change-item';
+              const strong=document.createElement('strong'); 
+              strong.textContent='The following variables are now requested:';
+              div.appendChild(strong);
+              const table=document.createElement('table'); table.className='var-table';
+              const thead=document.createElement('thead'); 
+              thead.innerHTML='<tr><th>cmip7_compound_name</th><th>cmip6_compound_name</th><th>long_name</th><th>standard_name</th></tr>';
+              table.appendChild(thead);
+              const tbody=document.createElement('tbody');
+              ch.variables_added.slice().sort().forEach(uid=>tbody.appendChild(makeVarRow(uid)));
+              table.appendChild(tbody); div.appendChild(table); content.appendChild(div);
+          }
+
+          details.appendChild(content);
+          card.appendChild(details);
+          kindDetails.appendChild(card);
+      }
+
+      return kindDetails;
+  }
+
+
+  const oppSection = renderKind('opportunities');
+  const mipSection = renderKind('mips');
+
+  if(oppSection) vdiv.appendChild(oppSection);
+  if(mipSection) vdiv.appendChild(mipSection);
+  if(!oppSection && !mipSection){
+    const p=document.createElement('p'); p.style.color='#666'; p.textContent='No changes recorded for this release.';
+    vdiv.appendChild(p);
+  }
+
+  container.appendChild(vdiv);
+}
+
+})();
+</script>
+
+</body>
+</html>

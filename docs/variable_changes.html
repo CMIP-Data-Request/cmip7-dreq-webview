@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMIP7-AFT Variable Changes</title>
+<link rel="stylesheet" href="style_c7dreq.css">
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 2rem;
+    background: #fafafa;
+    line-height: 1.5;
+}
+h1 { text-align: center; }
+h2 { margin-top: 2rem; border-bottom: 2px solid #ccc; padding-bottom: 0.2rem; }
+.version-section {
+    display: block;
+    width: 100%;
+    background: #fff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+/* Ensure the summary behaves like a block and fills width */
+.version-section > summary {
+    display: block;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.3rem 0;
+    outline: none; /* remove default focus outline */
+}
+/* Optional hover effect for summary */
+.version-section:hover {
+    background-color: #f0f0f0;
+}
+/* Make the version content fill the remaining width */
+.version-section > div {
+    display: block;
+    width: 100%;
+}
+.variable-box {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.5rem;
+    margin-bottom: 0.8rem;
+    background-color: #f8f8f8;
+    transition: background-color 0.2s;
+}
+.variable-box:hover { background-color: #eee; }
+.variable-box.added { color: #1e7145; background-color: rgb(0,102,0,0.1); border: 1px solid #004d00; }
+.variable-box.removed { color:#9b1c1c; background:#fff6f6; border:1px solid #f1caca; }
+.variable-changes table { border-collapse: collapse; width: 100%; margin-top: 0.3rem; }
+.variable-changes td { padding: 0.3rem 0.5rem; vertical-align: top;}
+.variable-changes td.attr-name, .field_name { background-color: #dcdcdc !important; font-weight: bold !important; color: #000 !important; padding: 0.3rem 0.5rem; }
+.variable-changes td.old-value { color: darkred; }
+.variable-changes td.new-value { color: #1e7145; }
+.filter-section { margin-bottom: 1rem; }
+.variable-header {
+    margin-bottom: 0.3rem;
+}
+.variable-header span.cmip { font-weight:bold; }
+.variable-header span.longname { font-weight:normal; }
+.variable-header span.cf { font-style: italic; }
+.variable-header a.uidlink { font-size: 0.9em; margin-left: 0.3em; color:#0077cc; text-decoration:none; }
+.variable-header a.uidlink:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<h1>CMIP7-AFT Data Request - Variable Changes</h1>
+<p><a href='index.html'>Back to Version Index</a></p>
+<p class="lead">Filter the data request variable changes globally by variable attribute, by added/removed variables or by variable metadata.</p>
+
+<div class="filter-section">
+    <label for="attrFilter">Filter by attribute:</label>
+    <select id="attrFilter">
+        <option value="all">All attributes</option>
+        <option value="state">added / removed</option>
+        <option value="frequency">frequency</option>
+        <option value="modeling_realm">modeling_realm</option>
+        <option value="standard_name">standard_name</option>
+        <option value="units">units</option>
+        <option value="cell_methods">cell_methods</option>
+        <option value="cell_measures">cell_measures</option>
+        <option value="long_name">long_name</option>
+        <option value="comment">comment</option>
+        <option value="processing_note">processing_note</option>
+        <option value="dimensions">dimensions</option>
+        <option value="out_name">out_name</option>
+        <option value="type">type</option>
+        <option value="positive">positive</option>
+        <option value="spatial_shape">spatial_shape</option>
+        <option value="temporal_shape">temporal_shape</option>
+        <option value="cmip6_table">cmip6_table</option>
+        <option value="physical_parameter_name">physical_parameter_name</option>
+        <option value="variableRootDD">variableRootDD</option>
+        <option value="branding_label">branding_label</option>
+        <option value="branded_variable_name">branded_variable_name</option>
+        <option value="region">region</option>
+        <option value="cmip6_compound_name">cmip6_compound_name</option>
+        <option value="cmip7_compound_name">cmip7_compound_name</option>
+    </select>
+
+    <input type="text" id="searchInput" placeholder="Full-text search">
+    <input type="text" id="uidInput" placeholder="Filter by UID">
+</div>
+
+<div id="changesContainer"></div>
+
+<script>
+// Load JSON files
+let variableChanges = {};
+let variableIndex = {};
+
+async function loadJSON(url) { const resp = await fetch(url); return await resp.json(); }
+function sanitizeUID(uid) { if(!uid) return null; return /^[A-Za-z0-9\-]+$/.test(uid)? uid:null; }
+function escapeHTML(str){return str?str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;"):"";}
+
+// Build variable display name
+function buildVariableHeader(uid) {
+    const vi = variableIndex[uid];
+    if(!vi) return escapeHTML(uid);
+    const cmip = `<span class="cmip">${escapeHTML(vi.cmip7_name)} | ${escapeHTML(vi.cmip6_name)}</span>`;
+    const longname = vi.long_name?` <span class="longname">${escapeHTML(vi.long_name)}</span>`:'';
+    const cf = vi.standard_name?` <br><span class="cf" style="word-break: break-word; overflow-wrap: anywhere;">(${escapeHTML(vi.standard_name)})</span>`:'';
+    const uidlink = vi.url?` <br><a href="${escapeHTML(vi.url)}" target="_blank" class="uidlink">${escapeHTML(uid)}</a>`:` <span class="uidlink">${escapeHTML(uid)}</span>`;
+    return cmip + longname + cf + uidlink;
+}
+
+// Get UID from URL
+const params = new URLSearchParams(window.location.search);
+let uidFilter = sanitizeUID(params.get("uid"));
+if(uidFilter) document.getElementById('uidInput').value = uidFilter;
+
+// Render
+function renderChanges() {
+    const container = document.getElementById('changesContainer');
+    container.innerHTML = '';
+    const attrFilter = document.getElementById('attrFilter').value.toLowerCase();
+    const searchText = document.getElementById('searchInput').value.toLowerCase();
+    const uidText = document.getElementById('uidInput').value.trim();
+
+    const versions = Object.keys(variableChanges).sort().reverse();
+
+    versions.forEach(ver=>{
+        const verDiv = document.createElement('details');
+        verDiv.className='version-section';
+        const verHeader = document.createElement('summary');
+        verHeader.textContent=ver;
+        verDiv.appendChild(verHeader);
+
+        const vars = variableChanges[ver];
+        let anyVarDisplayed=false;
+        const verContent = document.createElement('div');
+
+        for(const [uid, changes] of Object.entries(vars)) {
+            if(uidText && uidText!==uid) continue;
+            const attrs = Object.keys(changes).filter(a=>!(a==='state' && changes[a]===''));
+            const filteredAttrs = attrs.filter(a=>attrFilter==='all' || a.toLowerCase()===attrFilter);
+            if(filteredAttrs.length===0) continue;
+
+            let matchSearch = true;
+            if(searchText) {
+                matchSearch = filteredAttrs.some(attr=>{
+                    const oldVal = (changes[attr].old??'').toLowerCase();
+                    const newVal = (changes[attr].new??'').toLowerCase();
+                    return oldVal.includes(searchText) || newVal.includes(searchText);
+                });
+                if(!matchSearch) {
+                    const vi = variableIndex[uid];
+                    if(vi){
+                        matchSearch=['cmip6_name','cmip7_name','long_name','standard_name','uid'].some(k=> (vi[k]?.toLowerCase()??'').includes(searchText));
+                    }
+                }
+            }
+            if(!matchSearch) continue;
+
+            anyVarDisplayed=true;
+
+            const stateClass = changes.state==='removed'?'removed':changes.state==='added'?'added':'';
+            const varBox = document.createElement('div');
+            varBox.className='variable-box '+stateClass;
+            if(stateClass==='removed') varBox.innerHTML='<strong>Removed in this release</strong>';
+            if(stateClass==='added') varBox.innerHTML='<strong>Added with this release</strong>';
+
+            const headerDiv = document.createElement('div');
+            headerDiv.className='variable-header';
+            headerDiv.innerHTML=buildVariableHeader(uid);
+            varBox.appendChild(headerDiv);
+
+            // Table for attribute changes (except state)
+            const table = document.createElement('table');
+            filteredAttrs.filter(a=>a!=='state').forEach(attr=>{
+                const tr=document.createElement('tr');
+                const tdAttr=document.createElement('td'); tdAttr.className='attr-name'; tdAttr.textContent=attr;
+                tdAttr.style.backgroundColor = "#e0e0e0";
+                tdAttr.style.fontWeight = "bold";
+                tdAttr.style.color = "#000";
+                tdAttr.style.width = "200px";
+                tr.appendChild(tdAttr);
+
+                const tdOld=document.createElement('td'); tdOld.className='old-value';
+                let oldVal = changes[attr].old??'';
+                tdOld.textContent = oldVal?oldVal:'has been defined as';
+                tdOld.style.color = oldVal?'darkred':'black';
+                tr.appendChild(tdOld);
+
+                const tdNew=document.createElement('td'); tdNew.className='new-value';
+                let newVal = changes[attr].new??'';
+                tdNew.textContent = newVal?newVal:'has been deleted';
+                tdNew.style.color = newVal?'green':'darkred';
+                tr.appendChild(tdNew);
+
+                table.appendChild(tr);
+            });
+
+            varBox.appendChild(table);
+            verContent.appendChild(varBox);
+        }
+
+        // Only expand version if UID filter applied or no matching variables
+        if(uidFilter || !anyVarDisplayed) verDiv.open=true;
+
+        if(!anyVarDisplayed) {
+            const p=document.createElement('p'); p.textContent='No variables match the selected filters';
+            verContent.appendChild(p);
+        }
+
+        verDiv.appendChild(verContent);
+        container.appendChild(verDiv);
+    });
+}
+
+// Load JSON
+async function init(){
+    [variableChanges, variableIndex]=await Promise.all([
+        loadJSON('variable_changes.json'),
+        loadJSON('variable_index.json')
+    ]);
+    renderChanges();
+}
+init();
+
+// Event listeners
+document.getElementById('attrFilter').addEventListener('change',renderChanges);
+document.getElementById('searchInput').addEventListener('input',renderChanges);
+document.getElementById('uidInput').addEventListener('input',renderChanges);
+</script>
+
+</body>
+</html>
+

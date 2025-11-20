@@ -128,10 +128,11 @@ function loadTable() {
 
     for (const varname in variableData) {
         const v = variableData[varname];
+        if (v.state === false) continue;
         const tr = document.createElement("tr");
 
         tr.innerHTML = `
-            <td><a href="${v.url}" target="_blank">${varname}</a></td>
+            <td><a href="${v.url}" target="_blank">${v.cmip7_name}</a></td>
             <td>${v.cmip6_name || ""}</td>
             <td>${v.long_name || ""}</td>
             <td>${v.root_name || ""}</td>
@@ -143,7 +144,7 @@ function loadTable() {
         rows.push({
             element: tr,
             values: {
-                cmip7: varname.toLowerCase(),
+                cmip7: (v.cmip7_name || "undef").toLowerCase(),
                 cmip6: (v.cmip6_name || "").toLowerCase(),
                 root: (v.root_name || "").toLowerCase(),
                 long: (v.long_name || "").toLowerCase(),
