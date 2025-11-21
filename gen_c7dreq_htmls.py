@@ -540,7 +540,8 @@ for uid, obj in uid_map.items():
         if not errmsg in issued_warnings:
             print(errmsg)
             issued_warnings.append(errmsg)
-    html += f"<p>Link to <a href='../../variable_changes.html?uid={sanitize(uid)}'>CMIP7-AFT Data Request - Variable Changes</a></p>"
+    if category == "variables":
+        html += f"<p>Link to <a href='../../variable_changes.html?uid={sanitize(uid)}' target='_blank'>CMIP7-AFT Data Request - Variable Changes</a></p>"
     html += "<table><tr><th>Attribute</th><th>Value</th></tr>"
     for attr, value in main_record.items():
         if extra_record:
@@ -649,7 +650,7 @@ for var in sorted(
         ),
         "standard_name": cfsn.get("name", "undef"),
         "description": varatts.get("description", "undef"),
-        "url": f"/latest/u/{sanitize(varatts['uid'])}.html",
+        "url": f"latest/u/{sanitize(varatts['uid'])}.html",
         "history": "",
         "state": True,
     }
@@ -692,11 +693,11 @@ for var in var_index_old:
         html = f"<h1>{category} record: {escape(var)} ({version})</h1>"
         html += f"<p><a href='../variables.html'>Back to variables</a> | <a href='../index.html'>Category Index</a></p>"
         html += (
-            "<p><strong>Note:</strong> This record was removed with the current or with a previous release of the CMIP7 Data Request. Link to record of previous version: <a href='"
-            + var_index[var]["url"].replace("/latest/", f"/{prev_version}/")
+            "<p><strong>Note:</strong> This record was removed with the current or with a previous release of the CMIP7 Data Request. Link to record of previous version: <a href='../../"
+            + var_index[var]["url"].replace("latest/", f"{prev_version}/")
             + "'>LINK</a></p>"
         )
-        html += f"<p>Link to <a href='/variable_changes.html?uid={var}'>CMIP7-AFT Data Request - Variable Changes</a></p>"
+        html += f"<p>Link to <a href='../../variable_changes.html?uid={var}' target='_blank'>CMIP7-AFT Data Request - Variable Changes</a></p>"
         html += "<table><tr><th>Attribute</th><th>Value</th></tr>"
         for attr, value in var_index_old[var].items():
             if attr == "url" or attr == "state":
