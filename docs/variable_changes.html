@@ -52,6 +52,7 @@ h2 { margin-top: 2rem; border-bottom: 2px solid #ccc; padding-bottom: 0.2rem; }
 .variable-box.added { color: #1e7145; background-color: rgb(0,102,0,0.1); border: 1px solid #004d00; }
 .variable-box.removed { color:#9b1c1c; background:#fff6f6; border:1px solid #f1caca; }
 .variable-changes table { border-collapse: collapse; width: 100%; margin-top: 0.3rem; overflow-wrap: anywhere; }
+.variable-changes th {background-color: #dcdcdc !important; font-weight: bold !important; color: #000 !important; padding: 0.3rem 0.5rem;}
 .variable-changes td { padding: 0.3rem 0.5rem; vertical-align: top;}
 .variable-changes td.attr-name, .field_name { background-color: #dcdcdc !important; font-weight: bold !important; color: #000 !important; padding: 0.3rem 0.5rem; }
 .variable-changes td.old-value { color: darkred; }
@@ -194,6 +195,19 @@ function renderChanges() {
 
             // Table for attribute changes (except state)
             const table = document.createElement('table');
+            const trHeader = document.createElement('tr');
+            const th1 = document.createElement('th');
+            const th2 = document.createElement('th');
+            const th3 = document.createElement('th');
+            th1.textContent="";
+            th1.style.backgroundcolor = "#e0e0e0";
+            th2.textContent="Deprecated value";
+            th3.textContent="New value";
+            trHeader.appendChild(th1);
+            trHeader.appendChild(th2);
+            trHeader.appendChild(th3);
+            table.appendChild(trHeader);
+
             filteredAttrs.filter(a=>a!=='state').forEach(attr=>{
                 const tr=document.createElement('tr');
                 const tdAttr=document.createElement('td'); tdAttr.className='attr-name'; tdAttr.textContent=attr;
@@ -207,12 +221,14 @@ function renderChanges() {
                 let oldVal = changes[attr].old??'';
                 tdOld.textContent = oldVal?oldVal:'has been defined as';
                 tdOld.style.color = oldVal?'darkred':'black';
+                tdOld.style.fontWeight = oldVal?'normal':'bold';
                 tr.appendChild(tdOld);
 
                 const tdNew=document.createElement('td'); tdNew.className='new-value';
                 let newVal = changes[attr].new??'';
                 tdNew.textContent = newVal?newVal:'has been deleted';
-                tdNew.style.color = newVal?'green':'darkred';
+                tdNew.style.color = newVal?'green':'black';
+                tdNew.style.fontWeight = newVal?'normal':'bold';
                 tr.appendChild(tdNew);
 
                 table.appendChild(tr);
