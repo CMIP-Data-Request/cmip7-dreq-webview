@@ -15,6 +15,54 @@ body {
 }
 h1 { text-align: center; }
 h2 { margin-top: 2rem; border-bottom: 2px solid #ccc; padding-bottom: 0.2rem; }
+.filter-section {
+    gap: 0.7rem;
+    margin-bottom: 1.5rem;
+}
+.filter-section input {
+    max-width: 250px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-left: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.filter-section select {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-left: 10px;
+  background-color: #fafafa;
+  color: #333;
+  cursor: pointer;
+
+  /* Prevent overflowing text */
+  max-width: 250px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  /* Transition for hover/focus feedback */
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+/* Hover effect (same as in variable_changes.html) */
+.filter-section select:hover {
+    border-color: #999;
+}
+/* Focus highlight */
+.filter-section select:focus {
+    border-color: #0077cc;
+    box-shadow: 0 0 3px rgba(0, 119, 204, 0.4);
+    outline: none;
+}
+/* Disabled select (if you ever use it) */
+.filter-section select:disabled {
+    background-color: #eee;
+    color: #888;
+    cursor: not-allowed;
+}
 .version-section {
     display: block;
     width: 100%;
