@@ -258,18 +258,20 @@ function renderChanges() {
 
             // Table for attribute changes (except state)
             const table = document.createElement('table');
-            const trHeader = document.createElement('tr');
-            const th1 = document.createElement('th');
-            const th2 = document.createElement('th');
-            const th3 = document.createElement('th');
-            th1.textContent="";
-            th1.style.backgroundcolor = "#e0e0e0";
-            th2.textContent="Deprecated value";
-            th3.textContent="New value";
-            trHeader.appendChild(th1);
-            trHeader.appendChild(th2);
-            trHeader.appendChild(th3);
-            table.appendChild(trHeader);
+            if (changes.state !== 'added' && changes.state !== 'removed') {
+                const trHeader = document.createElement('tr');
+                const th1 = document.createElement('th');
+                const th2 = document.createElement('th');
+                const th3 = document.createElement('th');
+                th1.textContent="";
+                th1.style.backgroundcolor = "#e0e0e0";
+                th2.textContent="Deprecated value";
+                th3.textContent="New value";
+                trHeader.appendChild(th1);
+                trHeader.appendChild(th2);
+                trHeader.appendChild(th3);
+                table.appendChild(trHeader);
+            }
 
             filteredAttrs.filter(a=>a!=='state').forEach(attr=>{
                 const tr=document.createElement('tr');
