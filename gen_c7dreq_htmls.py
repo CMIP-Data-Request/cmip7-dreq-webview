@@ -294,8 +294,8 @@ def write_file(path, content, title="", style_location="../"):
         )
         if title:
             f.write(f"<title>{title}</title>")
-        # f.write('<link rel="icon" type="image/x-icon" href="/ress/favico.ico">')
         f.write(f'<link rel="stylesheet" href="{style_location}style_c7dreq.css">')
+        f.write(f'<link rel="icon" type="image/x-icon" href="{style_location}ress/favico.ico">')
         f.write("</head>")
         f.write("<body>")
         f.write(content)
@@ -486,6 +486,7 @@ reverse_links = build_reverse_links_map(data_all)
 # === index.html ===
 index_html = f"<h1>DReq {version} All Categories</h1>"
 index_html += f"<p><a href='../index.html'>Back to Version Index</a></p><ul>"
+index_html += f"<script src='../check_deprecated.js' data-dreq-version=\"{version}\" data-dreq-latest=\"../dreq_latest_version.txt\"></script>"
 for category in sorted(main_data.keys()):
     if category_desc.get(category):
         index_html += f'<li><a title="{escape(category_desc.get(category))}" href="{category}.html">{escape(category)}</a></li>'
@@ -499,7 +500,8 @@ write_file(
 # === Category Pages ===
 for category, records in main_data.items():
     html = f"<h1>Category: {escape(category)} ({version})</h1>"
-    html += f"<p><a href='index.html'>Back to Category Index</a></p><ul>"
+    html += f"<p><a href='index.html'>Back to Category Index</a></p>"
+    html += f"<script src='../check_deprecated.js' data-dreq-version=\"{version}\" data-dreq-latest=\"../dreq_latest_version.txt\"></script><ul>"
     if category_desc.get(category) not in ["", None]:
         print(f"category {category}: '{category_desc.get(category)}'")
         html += f"<p><strong>Category Description:</strong> {escape(category_desc.get(category))}</p>"
@@ -533,6 +535,7 @@ for uid, obj in uid_map.items():
     else:
         html = f"<h1>{category} record: {escape(record_id)} ({version})</h1>"
     html += f"<p><a href='../{category}.html'>Back to {escape(category)}</a> | <a href='../index.html'>Category Index</a></p>"
+    html += f"<script src='../../check_deprecated.js' data-dreq-version=\"{version}\" data-dreq-latest=\"../../dreq_latest_version.txt\"></script>"
     if category_desc.get(category) not in ["", None]:
         html += f"<br><details><summary><strong>Category Description</strong></summary><p>{escape(category_desc.get(category))}</p></details><br><br>"
     else:
@@ -692,6 +695,7 @@ for var in var_index_old:
         # Write placeholder html file to avoid broken links:
         html = f"<h1>{category} record: {escape(var)} ({version})</h1>"
         html += f"<p><a href='../variables.html'>Back to variables</a> | <a href='../index.html'>Category Index</a></p>"
+        html += f"<script src='../../check_deprecated.js' data-dreq-version=\"{version}\" data-dreq-latest=\"../../dreq_latest_version.txt\"></script>"
         html += (
             "<p><strong>Note:</strong> This record was removed with the current or with a previous release of the CMIP7 Data Request. Link to record of previous version: <a href='../../"
             + var_index[var]["url"].replace("latest/", f"{prev_version}/")
