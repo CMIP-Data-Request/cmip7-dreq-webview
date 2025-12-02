@@ -53,36 +53,40 @@
   a.var-link:hover { text-decoration:underline; }
 
   .filter-section {
-      gap: 0.7rem;
       margin-bottom: 1.5rem;
+      width: 100%;
+      background-color: #eee;
+      border-radius: 6px;
+      box-sizing: border-box;
+      padding: 1rem;
   }
   .filter-section input {
-      max-width: 250px;
+      width: 200px;
       padding: 0.5rem;
       border: 1px solid #ccc;
       border-radius: 6px;
-      margin-left: 10px;
-      width: 100%;
+      margin: 10px;
       box-sizing: border-box;
   }
   .filter-section select {
-    padding: 6px 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin-left: 10px;
-    background-color: #fafafa;
-    color: #333;
-    cursor: pointer;
+      box-sizing: border-box;
+      padding: 6px 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin: 10px;
+      background-color: #fafafa;
+      color: #333;
+      cursor: pointer;
 
-    /* Prevent overflowing text */
-    max-width: 250px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+      /* Prevent overflowing text */
+      width: 200px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
 
-    /* Transition for hover/focus feedback */
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      /* Transition for hover/focus feedback */
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
   /* Hover effect (same as in variable_changes.html) */
   .filter-section select:hover {
@@ -109,11 +113,10 @@
 <p class="lead">Browse changes regarding requested experiments, variables or ensemble members introduced with successive Data Request releases. Click a version to expand, then open Opportunities or MIPs to see what changed.</p>
 <p><a href='index.html'>Back to Version Index</a></p>
 
-<div class="filter-section" style="margin:1rem 0; padding:0.5rem; background:#f2f2f2; border-radius:6px;">
+<div class="filter-section">
   <!-- Filter 1 - Type of change -->
-  <label>Filter by change type: </label>
   <select id="filterChangeType">
-    <option value="all">All</option>
+    <option value="all">Filter by type</option>
     <option value="state">Added / Removed</option>
     <option value="experiments_added">Experiments added</option>
     <option value="experiments_removed">Experiments removed</option>
@@ -123,15 +126,13 @@
   </select>
 
   <!-- Filter 2 - by Opportunity -->
-  <label style="margin-left:1rem;">Filter by Opportunity: </label>
   <select id="filterOpp">
-    <option value="all">All Opportunities</option>
+    <option value="all">Filter by Opportunity</option>
   </select>
 
   <!-- Filter 3 - by MIP -->
-  <label style="margin-left:1rem;" title="Not yet supported">Filter by MIP: </label>
   <select disabled id="filterMip" title="Not yet supported">
-    <option value="all">All MIPs</option>
+    <option value="all">Filter by MIP</option>
   </select>
 
 </div>

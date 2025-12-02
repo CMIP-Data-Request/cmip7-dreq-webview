@@ -16,36 +16,40 @@ body {
 h1 { text-align: center; }
 h2 { margin-top: 2rem; border-bottom: 2px solid #ccc; padding-bottom: 0.2rem; }
 .filter-section {
-    gap: 0.7rem;
     margin-bottom: 1.5rem;
+    width: 100%;
+    background-color: #eee;
+    border-radius: 6px;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 .filter-section input {
-    max-width: 250px;
+    width: 200px;
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 6px;
-    margin-left: 10px;
-    width: 100%;
+    margin: 10px;
     box-sizing: border-box;
 }
 .filter-section select {
-  padding: 6px 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-left: 10px;
-  background-color: #fafafa;
-  color: #333;
-  cursor: pointer;
+    box-sizing: border-box;
+    padding: 6px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin: 10px;
+    background-color: #fafafa;
+    color: #333;
+    cursor: pointer;
 
-  /* Prevent overflowing text */
-  max-width: 250px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+    /* Prevent overflowing text */
+    width: 200px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
-  /* Transition for hover/focus feedback */
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    /* Transition for hover/focus feedback */
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 /* Hover effect (same as in variable_changes.html) */
 .filter-section select:hover {
@@ -63,6 +67,15 @@ h2 { margin-top: 2rem; border-bottom: 2px solid #ccc; padding-bottom: 0.2rem; }
     color: #888;
     cursor: not-allowed;
 }
+#changesContainer {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+#changesContainer details {
+    margin-left: 0;
+}
 .version-section {
     display: block;
     width: 100%;
@@ -71,6 +84,7 @@ h2 { margin-top: 2rem; border-bottom: 2px solid #ccc; padding-bottom: 0.2rem; }
     margin-bottom: 1rem;
     border-radius: 6px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-sizing: border-box;
 }
 /* Ensure the summary behaves like a block and fills width */
 .version-section > summary {
@@ -88,6 +102,7 @@ h2 { margin-top: 2rem; border-bottom: 2px solid #ccc; padding-bottom: 0.2rem; }
 .version-section > div {
     display: block;
     width: 100%;
+    box-sizing: border-box;
 }
 .variable-box {
     border: 1px solid #ccc;
@@ -124,9 +139,8 @@ h2 { margin-top: 2rem; border-bottom: 2px solid #ccc; padding-bottom: 0.2rem; }
 <p class="lead">Filter the data request variable changes globally by variable attribute, by added/removed variables or by variable metadata.</p>
 
 <div class="filter-section">
-    <label for="attrFilter">Filter by attribute:</label>
     <select id="attrFilter">
-        <option value="all">All attributes</option>
+        <option value="all">Filter by attribute</option>
         <option value="state">added / removed</option>
         <option value="frequency">frequency</option>
         <option value="modeling_realm">modeling_realm</option>
