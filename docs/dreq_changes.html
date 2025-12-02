@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CMIP7-AFT Data Request — Request Changes by Release</title>
+<link rel="icon" type="image/x-icon" href="ress/favico.ico">
 
 <style>
   body {
@@ -205,12 +206,12 @@ for(const version of versions){
 
       for(const objUid of uidsForKind){
           const ch = vchanges[objUid];
-          const card = document.createElement('div'); 
+          const card = document.createElement('div');
           card.className='obj';
 
           // REMOVED objects
           if(ch.state==='removed'||ch.state===false){
-              const removedBox = document.createElement('div'); 
+              const removedBox = document.createElement('div');
               removedBox.className='obj-removed';
 
               if(typeOfObject(objUid) === 'opportunity'){
@@ -221,36 +222,36 @@ for(const version of versions){
                     ' was removed from the Data Request.';
               }
 
-              card.appendChild(removedBox); 
-              kindDetails.appendChild(card); 
+              card.appendChild(removedBox);
+              kindDetails.appendChild(card);
               continue;
           }
 
           // ADDED objects
           if(ch.state==='added'){
-              const addedBox = document.createElement('div'); 
+              const addedBox = document.createElement('div');
               addedBox.className='obj-removed';
-              addedBox.style.background='#f0fff0'; 
+              addedBox.style.background='#f0fff0';
               addedBox.style.color='#1a7a1a';
               addedBox.textContent=labelForDreq(objUid)+' was added to the Data Request.';
-              card.appendChild(addedBox); 
-              kindDetails.appendChild(card); 
+              card.appendChild(addedBox);
+              kindDetails.appendChild(card);
               continue;
           }
 
           // Objects with other changes
-          const details=document.createElement('details'); 
+          const details=document.createElement('details');
           details.className='obj-details';
-          const summary=document.createElement('summary'); 
-          summary.textContent=labelForDreq(objUid); 
+          const summary=document.createElement('summary');
+          summary.textContent=labelForDreq(objUid);
           details.appendChild(summary);
 
-          const content=document.createElement('div'); 
+          const content=document.createElement('div');
           content.className='content';
 
           // ensemble size
           if(ch.ensemble_size){
-              const div=document.createElement('div'); 
+              const div=document.createElement('div');
               div.className='change-item';
               div.innerHTML='<strong>Ensemble size changed</strong><div>'+ch.ensemble_size+'</div>';
               content.appendChild(div);
@@ -259,31 +260,31 @@ for(const version of versions){
           // experiments removed
           if(ch.experiments_removed?.length){
               const div=document.createElement('div'); div.className='change-item';
-              const strong=document.createElement('strong'); 
+              const strong=document.createElement('strong');
               strong.textContent='The following experiments are no longer requested:';
-              div.appendChild(strong); 
-              div.appendChild(createUidList(ch.experiments_removed)); 
+              div.appendChild(strong);
+              div.appendChild(createUidList(ch.experiments_removed));
               content.appendChild(div);
           }
 
           // experiments added
           if(ch.experiments_added?.length){
               const div=document.createElement('div'); div.className='change-item';
-              const strong=document.createElement('strong'); 
+              const strong=document.createElement('strong');
               strong.textContent='The following experiments are now requested:';
-              div.appendChild(strong); 
-              div.appendChild(createUidList(ch.experiments_added)); 
+              div.appendChild(strong);
+              div.appendChild(createUidList(ch.experiments_added));
               content.appendChild(div);
           }
 
           // variables removed
           if(ch.variables_removed?.length){
               const div=document.createElement('div'); div.className='change-item';
-              const strong=document.createElement('strong'); 
+              const strong=document.createElement('strong');
               strong.textContent='The following variables are no longer requested:';
               div.appendChild(strong);
               const table=document.createElement('table'); table.className='var-table';
-              const thead=document.createElement('thead'); 
+              const thead=document.createElement('thead');
               thead.innerHTML='<tr><th>cmip7_compound_name</th><th>cmip6_compound_name</th><th>long_name</th><th>standard_name</th></tr>';
               table.appendChild(thead);
               const tbody=document.createElement('tbody');
@@ -294,11 +295,11 @@ for(const version of versions){
           // variables added
           if(ch.variables_added?.length){
               const div=document.createElement('div'); div.className='change-item';
-              const strong=document.createElement('strong'); 
+              const strong=document.createElement('strong');
               strong.textContent='The following variables are now requested:';
               div.appendChild(strong);
               const table=document.createElement('table'); table.className='var-table';
-              const thead=document.createElement('thead'); 
+              const thead=document.createElement('thead');
               thead.innerHTML='<tr><th>cmip7_compound_name</th><th>cmip6_compound_name</th><th>long_name</th><th>standard_name</th></tr>';
               table.appendChild(thead);
               const tbody=document.createElement('tbody');

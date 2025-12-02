@@ -123,22 +123,22 @@ ul li a:hover {
 
 /* Create little info box for all elements with tooltip */
 td[title]::after {
-    content: url('/cmip7-dreq-webview/ress/tooltip.png');
+    content: url('ress/tooltip.png');
     margin-left: .25em;
     padding-left: .25em;
     padding-right: .25em;
 }
 a[title]::after {
-    content: url('/cmip7-dreq-webview/ress/tooltip.png');
+    content: url('ress/tooltip.png');
     margin-left: .25em;
     padding-left: .25em;
     padding-right: .25em;
 }
 td[title]:hover::after {
-    content: url('/cmip7-dreq-webview/ress/tooltip_hover.png');
+    content: url('ress/tooltip_hover.png');
 }
 a[title]:hover::after {
-    content: url('/cmip7-dreq-webview/ress/tooltip_hover.png');
+    content: url('ress/tooltip_hover.png');
 }
 
 
