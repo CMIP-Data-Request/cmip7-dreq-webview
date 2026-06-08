@@ -21,6 +21,7 @@ version = "v1.2.2"
 version = "v1.2.2.1"
 version = "v1.2.2.2"
 version = "v1.2.2.3"
+version = "v1.2.2.4"
 
 
 if len(sys.argv) > 1:
@@ -36,6 +37,7 @@ prev_version = {
     "v1.2.2.1": "v1.2.2",
     "v1.2.2.2": "v1.2.2.1",
     "v1.2.2.3": "v1.2.2.2",
+    "v1.2.2.4": "v1.2.2.3",
 }
 prev_version = prev_version[version]
 
@@ -906,6 +908,8 @@ vkeys = sorted(
         "region",
         "cmip6_compound_name",
         "cmip7_compound_name",
+        "flag_values",
+        "flag_meanings"
     ]
 )
 vchanges = defaultdict(dict)
@@ -970,4 +974,4 @@ if prev_version:
     vchanges_total[version] = vchanges
     with open(vchfile, "w") as f:
         json.dump(vchanges_total, f, indent=4)
-    print(f"Data Request variable changes written to '{drchfile}'")
+    print(f"Data Request variable changes written to '{vchfile}'")

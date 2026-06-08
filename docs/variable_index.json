@@ -4055,6 +4055,18 @@
         "history": "",
         "state": true
     },
+    "80aca278-a698-11ef-914a-613c0433d878": {
+        "cmip7_name": "atmos.fco2all.tavg-u-hxy-u.mon.glb",
+        "cmip6_name": "Amon.fco2all",
+        "long_name": "Carbon Mass Flux into Atmosphere Due to All Emissions of CO2 from All Sources [kgC m-2 s-1]",
+        "root_name": "fco2all",
+        "branding_label": "tavg-u-hxy-u",
+        "standard_name": "tendency_of_atmosphere_mass_content_of_carbon_dioxide_expressed_as_carbon_due_to_emissions_and_surface_fluxes",
+        "description": "This field should be equivalent to the combined fluxes of carbon that account for all exchanges between the atmosphere and land or ocean.",
+        "url": "latest/u/80aca278-a698-11ef-914a-613c0433d878.html",
+        "history": "Added in version v1.2.2.4",
+        "state": true
+    },
     "baaddada-e5dd-11e5-8482-ac72891c3257": {
         "cmip7_name": "atmos.fco2antt.tavg-u-hxy-u.mon.glb",
         "cmip6_name": "Amon.fco2antt",
@@ -4062,7 +4074,7 @@
         "root_name": "fco2antt",
         "branding_label": "tavg-u-hxy-u",
         "standard_name": "tendency_of_atmosphere_mass_content_of_carbon_dioxide_expressed_as_carbon_due_to_anthropogenic_emission",
-        "description": "This is requested only for the emission-driven coupled carbon climate model runs.  Does not include natural fire sources but, includes all anthropogenic sources, including fossil fuel use, cement production, agricultural burning, and sources associated with anthropogenic land use change excluding forest regrowth.",
+        "description": "Does not include natural fire sources but, includes all anthropogenic sources, including fossil fuel use, cement production, agricultural burning, and sources associated with anthropogenic land use change excluding forest regrowth.",
         "url": "latest/u/baaddada-e5dd-11e5-8482-ac72891c3257.html",
         "history": "",
         "state": true
@@ -8411,6 +8423,18 @@
         "history": "",
         "state": true
     },
+    "80ac31e0-a698-11ef-914a-613c0433d878": {
+        "cmip7_name": "atmos.tas.tavg-h2m-hxy-u.1hr.30S-90S",
+        "cmip6_name": "AERhr.tasSouth30",
+        "long_name": "Near-Surface Air Temperature",
+        "root_name": "tas",
+        "branding_label": "tavg-h2m-hxy-u",
+        "standard_name": "air_temperature",
+        "description": "Hourly Temperature at 2m above the surface",
+        "url": "latest/u/80ac31e0-a698-11ef-914a-613c0433d878.html",
+        "history": "",
+        "state": true
+    },
     "01d5550a-c792-11e6-aa58-5404a60d96b5": {
         "cmip7_name": "atmos.tas.tavg-h2m-hxy-u.1hr.glb",
         "cmip6_name": "AERhr.tas",
@@ -11532,7 +11556,7 @@
         "state": true
     },
     "80ab72a7-a698-11ef-914a-613c0433d878": {
-        "cmip7_name": "atmosChem.o3ref.tclm-al-hxy-u.fx.glb",
+        "cmip7_name": "atmosChem.o3ref.tclm-al-hxy-u.mon.glb",
         "cmip6_name": "AERfx.o3refClim",
         "long_name": "Reference ozone mole fraction used in diagnostic call to radiation scheme",
         "root_name": "o3ref",
@@ -13919,6 +13943,18 @@
         "history": "",
         "state": true
     },
+    "8b7eeef6-4a5b-11e6-9cd2-ac72891c3257": {
+        "cmip7_name": "land.netAtmosLandCO2Flux.tavg-u-hxy-lnd.mon.glb",
+        "cmip6_name": "Emon.netAtmosLandCO2Flux",
+        "long_name": "Net Flux of CO2 Between Atmosphere and Land (Positive into Land) as a Result of All Processes [kgC m-2 s-1]",
+        "root_name": "netAtmosLandCO2Flux",
+        "branding_label": "tavg-u-hxy-lnd",
+        "standard_name": "surface_net_downward_mass_flux_of_carbon_dioxide_expressed_as_carbon",
+        "description": "Flux of carbon as carbon dioxide into the land. This flux should be reproducible by differencing the sum of all carbon pools (cVeg, cLitter, cSoil, and cProducts or equivalently cLand) from one time step to the next, except in the case of lateral transfer of carbon due to harvest, riverine transport of dissolved organic and/or inorganic carbon, or any other process (in which case the lateral\\_carbon\\_transfer\\_over\\_land term, see below, will be zero data).",
+        "url": "latest/u/8b7eeef6-4a5b-11e6-9cd2-ac72891c3257.html",
+        "history": " | Re-added in version v1.2.2.4",
+        "state": true
+    },
     "bab26690-e5dd-11e5-8482-ac72891c3257": {
         "cmip7_name": "land.npp.tavg-u-hxy-lnd.mon.glb",
         "cmip6_name": "Lmon.npp",
@@ -14684,30 +14720,6 @@
         "standard_name": "lwe_thickness_of_surface_snow_amount",
         "description": "The surface called \"surface\" means the lower boundary of the atmosphere. \"lwe\" means liquid water equivalent. \"Amount\" means mass per unit area. The construction lwe\\_thickness\\_of\\_X\\_amount or \\_content means the vertical extent of a layer of liquid water having the same mass per unit area. Surface amount refers to the amount on the ground, excluding that on the plant or vegetation canopy.",
         "url": "latest/u/d22dd206-4a9f-11e6-b84e-ac72891c3257.html",
-        "history": "",
-        "state": true
-    },
-    "80ac31e0-a698-11ef-914a-613c0433d878": {
-        "cmip7_name": "land.tas.tavg-h2m-hxy-u.1hr.30S-90S",
-        "cmip6_name": "E1hr.tasSouth30",
-        "long_name": "Near-Surface Air Temperature",
-        "root_name": "tas",
-        "branding_label": "tavg-h2m-hxy-u",
-        "standard_name": "air_temperature",
-        "description": "Hourly Temperature at 2m above the surface",
-        "url": "latest/u/80ac31e0-a698-11ef-914a-613c0433d878.html",
-        "history": "",
-        "state": true
-    },
-    "83bbfbbf-7f07-11ef-9308-b1dd71e64bec": {
-        "cmip7_name": "land.tas.tavg-h2m-hxy-u.1hr.glb",
-        "cmip6_name": "E1hr.tas",
-        "long_name": "Near-Surface Air Temperature",
-        "root_name": "tas",
-        "branding_label": "tavg-h2m-hxy-u",
-        "standard_name": "air_temperature",
-        "description": "Hourly Temperature at 2m above the surface",
-        "url": "latest/u/83bbfbbf-7f07-11ef-9308-b1dd71e64bec.html",
         "history": "",
         "state": true
     },
@@ -16871,18 +16883,6 @@
         "history": "",
         "state": true
     },
-    "baa52994-e5dd-11e5-8482-ac72891c3257": {
-        "cmip7_name": "ocean.bigthetao.tavg-ol-hm-sea.mon.glb",
-        "cmip6_name": "Omon.bigthetaoga",
-        "long_name": "Global Average Sea Water Conservative Temperature",
-        "root_name": "bigthetao",
-        "branding_label": "tavg-ol-hm-sea",
-        "standard_name": "sea_water_conservative_temperature",
-        "description": "Diagnostic should be contributed only for models using conservative temperature as prognostic field.",
-        "url": "latest/u/baa52994-e5dd-11e5-8482-ac72891c3257.html",
-        "history": "",
-        "state": true
-    },
     "134c7db2-1026-11e8-9d87-1c4d70487308": {
         "cmip7_name": "ocean.bigthetao.tavg-ol-hxy-sea.dec.glb",
         "cmip6_name": "Odec.bigthetao",
@@ -16916,6 +16916,18 @@
         "standard_name": "sea_water_conservative_temperature",
         "description": "Diagnostic should be contributed even for models using conservative temperature as prognostic field.",
         "url": "latest/u/823b4d1e-9159-11ef-949c-b9e189121872.html",
+        "history": "",
+        "state": true
+    },
+    "baa52994-e5dd-11e5-8482-ac72891c3257": {
+        "cmip7_name": "ocean.bigthetao.tavg-u-hm-sea.mon.glb",
+        "cmip6_name": "Omon.bigthetaoga",
+        "long_name": "Global Average Sea Water Conservative Temperature",
+        "root_name": "bigthetao",
+        "branding_label": "tavg-u-hm-sea",
+        "standard_name": "sea_water_conservative_temperature",
+        "description": "Diagnostic should be contributed only for models using conservative temperature as prognostic field.",
+        "url": "latest/u/baa52994-e5dd-11e5-8482-ac72891c3257.html",
         "history": "",
         "state": true
     },
@@ -18329,7 +18341,7 @@
         "long_name": "Ocean Salt Mass Transport across Lines",
         "root_name": "sfacrossline",
         "branding_label": "tavg-u-ht-sea",
-        "standard_name": "ocean_salt_transport_across_line",
+        "standard_name": "ocean_salt_mass_transport_across_line",
         "description": "Depth-integrated total salt mass transport from resolved and parameterized processes across different lines on the Earth's surface (based on appendix J and table J1 of Griffies\u00a0et al., 2016). Formally, this means the integral along the line of the normal component of the heat transport. Positive and negative numbers refer to total northward/eastward and southward/westward transports, respectively. The transport should be evaluated for the full depth of the ocean, except for the Pacific Equatorial Undercurrent, which is averaged from the surface to 350m.",
         "url": "latest/u/80ab7447-a698-11ef-914a-613c0433d878.html",
         "history": "",
@@ -18479,18 +18491,6 @@
         "history": "",
         "state": true
     },
-    "baa55086-e5dd-11e5-8482-ac72891c3257": {
-        "cmip7_name": "ocean.so.tavg-ol-hm-sea.mon.glb",
-        "cmip6_name": "Omon.soga",
-        "long_name": "Global Mean Sea Water Salinity",
-        "root_name": "so",
-        "branding_label": "tavg-ol-hm-sea",
-        "standard_name": "sea_water_salinity",
-        "description": "Sea water salinity is the salt content of sea water, often on the Practical Salinity Scale of 1978. However, the unqualified term 'salinity' is generic and does not necessarily imply any particular method of calculation. The units of salinity are dimensionless and the units attribute should normally be given as 1e-3 or 0.001 i.e. parts per thousand.",
-        "url": "latest/u/baa55086-e5dd-11e5-8482-ac72891c3257.html",
-        "history": "",
-        "state": true
-    },
     "83bbfb71-7f07-11ef-9308-b1dd71e64bec": {
         "cmip7_name": "ocean.so.tavg-ol-hxy-sea.day.glb",
         "cmip6_name": "Oday.so",
@@ -18536,6 +18536,18 @@
         "standard_name": "sea_water_salinity",
         "description": "Sea water salinity is the salt content of sea water, often on the Practical Salinity Scale of 1978. However, the unqualified term 'salinity' is generic and does not necessarily imply any particular method of calculation. The units of salinity are dimensionless and the units attribute should normally be given as 1e-3 or 0.001 i.e. parts per thousand.",
         "url": "latest/u/baa5491a-e5dd-11e5-8482-ac72891c3257.html",
+        "history": "",
+        "state": true
+    },
+    "baa55086-e5dd-11e5-8482-ac72891c3257": {
+        "cmip7_name": "ocean.so.tavg-u-hm-sea.mon.glb",
+        "cmip6_name": "Omon.soga",
+        "long_name": "Global Mean Sea Water Salinity",
+        "root_name": "so",
+        "branding_label": "tavg-u-hm-sea",
+        "standard_name": "sea_water_salinity",
+        "description": "Sea water salinity is the salt content of sea water, often on the Practical Salinity Scale of 1978. However, the unqualified term 'salinity' is generic and does not necessarily imply any particular method of calculation. The units of salinity are dimensionless and the units attribute should normally be given as 1e-3 or 0.001 i.e. parts per thousand.",
+        "url": "latest/u/baa55086-e5dd-11e5-8482-ac72891c3257.html",
         "history": "",
         "state": true
     },
@@ -18899,18 +18911,6 @@
         "history": "",
         "state": true
     },
-    "baa52138-e5dd-11e5-8482-ac72891c3257": {
-        "cmip7_name": "ocean.thetao.tavg-ol-hm-sea.mon.glb",
-        "cmip6_name": "Omon.thetaoga",
-        "long_name": "Global Average Sea Water Potential Temperature",
-        "root_name": "thetao",
-        "branding_label": "tavg-ol-hm-sea",
-        "standard_name": "sea_water_potential_temperature",
-        "description": "Diagnostic should be contributed even for models using conservative temperature as prognostic field",
-        "url": "latest/u/baa52138-e5dd-11e5-8482-ac72891c3257.html",
-        "history": "",
-        "state": true
-    },
     "479522ca-bb0b-11e6-8316-5980f7b176d1": {
         "cmip7_name": "ocean.thetao.tavg-ol-hxy-sea.dec.glb",
         "cmip6_name": "Odec.thetao",
@@ -18956,6 +18956,18 @@
         "standard_name": "sea_water_potential_temperature",
         "description": "Diagnostic should be contributed even for models using conservative temperature as prognostic field.",
         "url": "latest/u/83bbfb6e-7f07-11ef-9308-b1dd71e64bec.html",
+        "history": "",
+        "state": true
+    },
+    "baa52138-e5dd-11e5-8482-ac72891c3257": {
+        "cmip7_name": "ocean.thetao.tavg-u-hm-sea.mon.glb",
+        "cmip6_name": "Omon.thetaoga",
+        "long_name": "Global Average Sea Water Potential Temperature",
+        "root_name": "thetao",
+        "branding_label": "tavg-u-hm-sea",
+        "standard_name": "sea_water_potential_temperature",
+        "description": "Diagnostic should be contributed even for models using conservative temperature as prognostic field",
+        "url": "latest/u/baa52138-e5dd-11e5-8482-ac72891c3257.html",
         "history": "",
         "state": true
     },
@@ -23687,6 +23699,18 @@
         "history": "",
         "state": true
     },
+    "83bbfbbf-7f07-11ef-9308-b1dd71e64bec": {
+        "cmip7_name": "land.tas.tavg-h2m-hxy-u.1hr.glb",
+        "cmip6_name": "E1hr.tas",
+        "long_name": "Near-Surface Air Temperature",
+        "root_name": "tas",
+        "branding_label": "tavg-h2m-hxy-u",
+        "standard_name": "air_temperature",
+        "description": "Hourly Temperature at 2m above the surface",
+        "url": "latest/u/83bbfbbf-7f07-11ef-9308-b1dd71e64bec.html",
+        "history": "Removed in version v1.2.2.4",
+        "state": false
+    },
     "83bbfba1-7f07-11ef-9308-b1dd71e64bec": {
         "cmip7_name": "atmos.albsrfc.tavg-u-hxy-u.mon.GLB",
         "cmip6_name": "Emon.albsrfc",
@@ -23720,18 +23744,6 @@
         "standard_name": "stem_mass_content_of_carbon",
         "description": "Carbon Mass in Wood",
         "url": "latest/u/d229353e-4a9f-11e6-b84e-ac72891c3257.html",
-        "history": "Removed in version v1.2.2.1",
-        "state": false
-    },
-    "8b7eeef6-4a5b-11e6-9cd2-ac72891c3257": {
-        "cmip7_name": "land.netAtmosLandCO2Flux.tavg-u-hxy-lnd.mon.GLB",
-        "cmip6_name": "Emon.netAtmosLandCO2Flux",
-        "long_name": "Net Flux of CO2 Between Atmosphere and Land (Positive into Land) as a Result of All Processes [kgC m-2 s-1]",
-        "root_name": "netAtmosLandCO2Flux",
-        "branding_label": "tavg-u-hxy-lnd",
-        "standard_name": "surface_net_downward_mass_flux_of_carbon_dioxide_expressed_as_carbon_due_to_all_land_processes",
-        "description": "Flux of carbon as carbon dioxide into the land. This flux should be reproducible by differencing the sum of all carbon pools (cVeg, cLitter, cSoil, and cProducts or equivalently cLand) from one time step to the next, except in the case of lateral transfer of carbon due to harvest, riverine transport of dissolved organic and/or inorganic carbon, or any other process (in which case the lateral\\_carbon\\_transfer\\_over\\_land term, see below, will be zero data).",
-        "url": "latest/u/8b7eeef6-4a5b-11e6-9cd2-ac72891c3257.html",
         "history": "Removed in version v1.2.2.1",
         "state": false
     },
