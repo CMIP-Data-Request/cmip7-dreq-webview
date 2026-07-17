@@ -51384,5 +51384,62 @@
         "83bbfbbf-7f07-11ef-9308-b1dd71e64bec": {
             "state": "removed"
         }
+    },
+    "v1.2.2.5": {
+        "711afb3e-faa7-11e6-bfb7-ac72891c3257": {
+            "comment": {
+                "old": "Average normal stress in sea ice (first stress invariant). Requested as instantaneous value at the center of the month (i.e., first timestep of the 15th day of the month).",
+                "new": "Average normal stress in sea ice (first stress invariant). Report the instantaneous value at the beginning of each month (i.e., 0Z on the first day of each month)"
+            },
+            "state": ""
+        },
+        "713564ba-faa7-11e6-bfb7-ac72891c3257": {
+            "comment": {
+                "old": "Maximum shear of sea-ice velocity field (second shear strain invariant). Requested as instantaneous value at the center of the month (i.e., first timestep of the 15th day of the month).",
+                "new": "Maximum shear of sea-ice velocity field (second shear strain invariant). Report the instantaneous value at the beginning of each month (i.e., 0Z on the first day of each month)"
+            },
+            "state": ""
+        },
+        "71436966-faa7-11e6-bfb7-ac72891c3257": {
+            "comment": {
+                "old": "Divergence of sea-ice velocity field (first shear strain invariant). Requested as instantaneous value at the center of the month (i.e., first timestep of the 15th day of the month).",
+                "new": "Divergence of sea-ice velocity field (first shear strain invariant). Report the instantaneous value at the beginning of each month (i.e., 0Z on the first day of each month)"
+            },
+            "state": ""
+        },
+        "7148170e-faa7-11e6-bfb7-ac72891c3257": {
+            "comment": {
+                "old": "Maximum shear stress in sea ice (second stress invariant). Requested as instantaneous value at the center of the month (i.e., first timestep of the 15th day of the month).",
+                "new": "Maximum shear stress in sea ice (second stress invariant). Report the instantaneous value at the beginning of each month (i.e., 0Z on the first day of each month)"
+            },
+            "state": ""
+        },
+        "80aca285-a698-11ef-914a-613c0433d878": {
+            "state": "added"
+        },
+        "80ac3193-a698-11ef-914a-613c0433d878": {
+            "state": "removed"
+        },
+        "80ac31ae-a698-11ef-914a-613c0433d878": {
+            "state": "removed"
+        },
+        "80ac31b4-a698-11ef-914a-613c0433d878": {
+            "state": "removed"
+        },
+        "80ac31ba-a698-11ef-914a-613c0433d878": {
+            "state": "removed"
+        },
+        "80ac31c2-a698-11ef-914a-613c0433d878": {
+            "state": "removed"
+        },
+        "80ac31c8-a698-11ef-914a-613c0433d878": {
+            "state": "removed"
+        },
+        "80ac31d0-a698-11ef-914a-613c0433d878": {
+            "state": "removed"
+        },
+        "80ac31e0-a698-11ef-914a-613c0433d878": {
+            "state": "removed"
+        }
     }
 }

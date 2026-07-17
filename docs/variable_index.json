@@ -4064,7 +4064,7 @@
         "standard_name": "tendency_of_atmosphere_mass_content_of_carbon_dioxide_expressed_as_carbon_due_to_emissions_and_surface_fluxes",
         "description": "This field should be equivalent to the combined fluxes of carbon that account for all exchanges between the atmosphere and land or ocean.",
         "url": "latest/u/80aca278-a698-11ef-914a-613c0433d878.html",
-        "history": "Added in version v1.2.2.4",
+        "history": "",
         "state": true
     },
     "baaddada-e5dd-11e5-8482-ac72891c3257": {
@@ -4472,18 +4472,6 @@
         "standard_name": "relative_humidity",
         "description": "This is the relative humidity with respect to liquid water for T> 0 C, and with respect to ice for T<0 C.",
         "url": "latest/u/a954c8a8-817c-11e6-a4e2-5404a60d96b5.html",
-        "history": "",
-        "state": true
-    },
-    "80ac3193-a698-11ef-914a-613c0433d878": {
-        "cmip7_name": "atmos.hurs.tavg-h2m-hxy-u.1hr.30S-90S",
-        "cmip6_name": "E1hr.hursSouth30",
-        "long_name": "Near-Surface Relative Humidity",
-        "root_name": "hurs",
-        "branding_label": "tavg-h2m-hxy-u",
-        "standard_name": "relative_humidity",
-        "description": "Relative humidity at 2m above the surface",
-        "url": "latest/u/80ac3193-a698-11ef-914a-613c0433d878.html",
         "history": "",
         "state": true
     },
@@ -5435,18 +5423,6 @@
         "history": "",
         "state": true
     },
-    "80ac31b4-a698-11ef-914a-613c0433d878": {
-        "cmip7_name": "atmos.pr.tavg-u-hxy-u.1hr.30S-90S",
-        "cmip6_name": "E1hr.prSouth30",
-        "long_name": "Precipitation",
-        "root_name": "pr",
-        "branding_label": "tavg-u-hxy-u",
-        "standard_name": "precipitation_flux",
-        "description": "Total precipitation flux",
-        "url": "latest/u/80ac31b4-a698-11ef-914a-613c0433d878.html",
-        "history": "",
-        "state": true
-    },
     "8baebea6-4a5b-11e6-9cd2-ac72891c3257": {
         "cmip7_name": "atmos.pr.tavg-u-hxy-u.1hr.glb",
         "cmip6_name": "E1hr.pr",
@@ -6059,18 +6035,6 @@
         "history": "",
         "state": true
     },
-    "80ac31ba-a698-11ef-914a-613c0433d878": {
-        "cmip7_name": "atmos.ps.tpt-u-hxy-u.1hr.30S-90S",
-        "cmip6_name": "E1hr.psSouth30",
-        "long_name": "Surface Air Pressure",
-        "root_name": "ps",
-        "branding_label": "tpt-u-hxy-u",
-        "standard_name": "surface_air_pressure",
-        "description": "Surface pressure.",
-        "url": "latest/u/80ac31ba-a698-11ef-914a-613c0433d878.html",
-        "history": "",
-        "state": true
-    },
     "83bbfbc5-7f07-11ef-9308-b1dd71e64bec": {
         "cmip7_name": "atmos.ps.tpt-u-hxy-u.1hr.glb",
         "cmip6_name": "E1hr.ps",
@@ -6548,18 +6512,6 @@
         "standard_name": "surface_downwelling_longwave_flux_in_air",
         "description": "The surface called \"surface\" means the lower boundary of the atmosphere. \"longwave\" means longwave radiation. Downwelling radiation is radiation from above. It does not mean \"net downward\". When thought of as being incident on a surface, a radiative flux is sometimes called \"irradiance\". In addition, it is identical with the quantity measured by a cosine-collector light-meter and sometimes called \"vector irradiance\". In accordance with common usage in geophysical disciplines, \"flux\" implies per unit area, called \"flux density\" in physics.",
         "url": "latest/u/d5b2c4e8-c78d-11e6-9b25-5404a60d96b5.html",
-        "history": "",
-        "state": true
-    },
-    "80ac31c2-a698-11ef-914a-613c0433d878": {
-        "cmip7_name": "atmos.rlds.tavg-u-hxy-u.1hr.30S-90S",
-        "cmip6_name": "E1hr.rldsSouth30",
-        "long_name": "Surface Downwelling Longwave Radiation",
-        "root_name": "rlds",
-        "branding_label": "tavg-u-hxy-u",
-        "standard_name": "surface_downwelling_longwave_flux_in_air",
-        "description": "Surface Downwelling Longwave Radiation",
-        "url": "latest/u/80ac31c2-a698-11ef-914a-613c0433d878.html",
         "history": "",
         "state": true
     },
@@ -7220,18 +7172,6 @@
         "standard_name": "surface_downwelling_shortwave_flux_in_air",
         "description": "Surface solar irradiance for UV calculations.",
         "url": "latest/u/d5b2bdc2-c78d-11e6-9b25-5404a60d96b5.html",
-        "history": "",
-        "state": true
-    },
-    "80ac31c8-a698-11ef-914a-613c0433d878": {
-        "cmip7_name": "atmos.rsds.tavg-u-hxy-u.1hr.30S-90S",
-        "cmip6_name": "E1hr.rsdsSouth30",
-        "long_name": "Surface Downwelling Shortwave Radiation",
-        "root_name": "rsds",
-        "branding_label": "tavg-u-hxy-u",
-        "standard_name": "surface_downwelling_shortwave_flux_in_air",
-        "description": "Hourly downward solar radiation flux at the surface",
-        "url": "latest/u/80ac31c8-a698-11ef-914a-613c0433d878.html",
         "history": "",
         "state": true
     },
@@ -8015,18 +7955,6 @@
         "history": "",
         "state": true
     },
-    "80ac31d0-a698-11ef-914a-613c0433d878": {
-        "cmip7_name": "atmos.sfcWind.tavg-h10m-hxy-u.1hr.30S-90S",
-        "cmip6_name": "E1hr.sfcWindSouth30",
-        "long_name": "Near-Surface Wind Speed",
-        "root_name": "sfcWind",
-        "branding_label": "tavg-h10m-hxy-u",
-        "standard_name": "wind_speed",
-        "description": "Hourly near-surface wind speed at 10m above the ground",
-        "url": "latest/u/80ac31d0-a698-11ef-914a-613c0433d878.html",
-        "history": "",
-        "state": true
-    },
     "83bbfbc0-7f07-11ef-9308-b1dd71e64bec": {
         "cmip7_name": "atmos.sfcWind.tavg-h10m-hxy-u.1hr.glb",
         "cmip6_name": "E1hr.sfcWind",
@@ -8420,18 +8348,6 @@
         "standard_name": "air_temperature",
         "description": "quantity averaged over ice sheet (grounded ice sheet and floating ice shelf) only. Needed to analyse the impact of downscaling methods",
         "url": "latest/u/d5b27c7c-c78d-11e6-9b25-5404a60d96b5.html",
-        "history": "",
-        "state": true
-    },
-    "80ac31e0-a698-11ef-914a-613c0433d878": {
-        "cmip7_name": "atmos.tas.tavg-h2m-hxy-u.1hr.30S-90S",
-        "cmip6_name": "AERhr.tasSouth30",
-        "long_name": "Near-Surface Air Temperature",
-        "root_name": "tas",
-        "branding_label": "tavg-h2m-hxy-u",
-        "standard_name": "air_temperature",
-        "description": "Hourly Temperature at 2m above the surface",
-        "url": "latest/u/80ac31e0-a698-11ef-914a-613c0433d878.html",
         "history": "",
         "state": true
     },
@@ -10809,6 +10725,18 @@
         "description": "Geopotential is the sum of the specific gravitational potential energy relative to the geoid and the specific centripetal potential energy. Geopotential height is the geopotential divided by the standard acceleration due to gravity. It is numerically similar to the altitude (or geometric height) and not to the quantity with standard name height, which is relative to the surface.",
         "url": "latest/u/7d943832-1ab7-11e7-8dfc-5404a60d96b5.html",
         "history": "",
+        "state": true
+    },
+    "80aca285-a698-11ef-914a-613c0433d878": {
+        "cmip7_name": "atmos.zhalf.ti-alh-hxy-u.fx.glb",
+        "cmip6_name": "fx.zhalf",
+        "long_name": "Altitude of Model Half-Levels",
+        "root_name": "zhalf",
+        "branding_label": "ti-alh-hxy-u",
+        "standard_name": "height_above_reference_ellipsoid",
+        "description": "Provide only if altitude of full model levels is fixed",
+        "url": "latest/u/80aca285-a698-11ef-914a-613c0433d878.html",
+        "history": "Added in version v1.2.2.5",
         "state": true
     },
     "19be55a8-81b1-11e6-92de-ac72891c3257": {
@@ -13952,7 +13880,7 @@
         "standard_name": "surface_net_downward_mass_flux_of_carbon_dioxide_expressed_as_carbon",
         "description": "Flux of carbon as carbon dioxide into the land. This flux should be reproducible by differencing the sum of all carbon pools (cVeg, cLitter, cSoil, and cProducts or equivalently cLand) from one time step to the next, except in the case of lateral transfer of carbon due to harvest, riverine transport of dissolved organic and/or inorganic carbon, or any other process (in which case the lateral\\_carbon\\_transfer\\_over\\_land term, see below, will be zero data).",
         "url": "latest/u/8b7eeef6-4a5b-11e6-9cd2-ac72891c3257.html",
-        "history": " | Re-added in version v1.2.2.4",
+        "history": "",
         "state": true
     },
     "bab26690-e5dd-11e5-8482-ac72891c3257": {
@@ -14120,18 +14048,6 @@
         "standard_name": "surface_altitude",
         "description": "This is needed in case the ice sheet elevation changes in time",
         "url": "latest/u/d5b3951c-c78d-11e6-9b25-5404a60d96b5.html",
-        "history": "",
-        "state": true
-    },
-    "80ac31ae-a698-11ef-914a-613c0433d878": {
-        "cmip7_name": "land.orog.ti-u-hxy-u.fx.30S-90S",
-        "cmip6_name": "fx.orogSouth30",
-        "long_name": "Surface Altitude",
-        "root_name": "orog",
-        "branding_label": "ti-u-hxy-u",
-        "standard_name": "surface_altitude",
-        "description": "height above the geoid; as defined here, \"the geoid\" is a surface of constant geopotential that, if the ocean were at rest, would coincide with mean sea level. Under this definition, the geoid changes as the mean volume of the ocean changes (e.g., due to glacial melt, or global warming of the ocean).  Reported here is the height above the present-day geoid (0.0 over ocean).",
-        "url": "latest/u/80ac31ae-a698-11ef-914a-613c0433d878.html",
         "history": "",
         "state": true
     },
@@ -22314,7 +22230,7 @@
         "root_name": "sidivvel",
         "branding_label": "tpt-u-hxy-si",
         "standard_name": "divergence_of_sea_ice_velocity",
-        "description": "Divergence of sea-ice velocity field (first shear strain invariant). Requested as instantaneous value at the center of the month (i.e., first timestep of the 15th day of the month).",
+        "description": "Divergence of sea-ice velocity field (first shear strain invariant). Report the instantaneous value at the beginning of each month (i.e., 0Z on the first day of each month)",
         "url": "latest/u/71436966-faa7-11e6-bfb7-ac72891c3257.html",
         "history": "",
         "state": true
@@ -23106,7 +23022,7 @@
         "root_name": "sishearvel",
         "branding_label": "tpt-u-hxy-si",
         "standard_name": "maximum_over_coordinate_rotation_of_sea_ice_horizontal_shear_strain_rate",
-        "description": "Maximum shear of sea-ice velocity field (second shear strain invariant). Requested as instantaneous value at the center of the month (i.e., first timestep of the 15th day of the month).",
+        "description": "Maximum shear of sea-ice velocity field (second shear strain invariant). Report the instantaneous value at the beginning of each month (i.e., 0Z on the first day of each month)",
         "url": "latest/u/713564ba-faa7-11e6-bfb7-ac72891c3257.html",
         "history": "",
         "state": true
@@ -23262,7 +23178,7 @@
         "root_name": "sistressave",
         "branding_label": "tpt-u-hxy-si",
         "standard_name": "sea_ice_average_normal_horizontal_stress",
-        "description": "Average normal stress in sea ice (first stress invariant). Requested as instantaneous value at the center of the month (i.e., first timestep of the 15th day of the month).",
+        "description": "Average normal stress in sea ice (first stress invariant). Report the instantaneous value at the beginning of each month (i.e., 0Z on the first day of each month)",
         "url": "latest/u/711afb3e-faa7-11e6-bfb7-ac72891c3257.html",
         "history": "",
         "state": true
@@ -23274,7 +23190,7 @@
         "root_name": "sistressmax",
         "branding_label": "tpt-u-hxy-si",
         "standard_name": "maximum_over_coordinate_rotation_of_sea_ice_horizontal_shear_stress",
-        "description": "Maximum shear stress in sea ice (second stress invariant). Requested as instantaneous value at the center of the month (i.e., first timestep of the 15th day of the month).",
+        "description": "Maximum shear stress in sea ice (second stress invariant). Report the instantaneous value at the beginning of each month (i.e., 0Z on the first day of each month)",
         "url": "latest/u/7148170e-faa7-11e6-bfb7-ac72891c3257.html",
         "history": "",
         "state": true
@@ -23698,6 +23614,102 @@
         "url": "latest/u/711075e2-faa7-11e6-bfb7-ac72891c3257.html",
         "history": "",
         "state": true
+    },
+    "80ac3193-a698-11ef-914a-613c0433d878": {
+        "cmip7_name": "atmos.hurs.tavg-h2m-hxy-u.1hr.30S-90S",
+        "cmip6_name": "E1hr.hursSouth30",
+        "long_name": "Near-Surface Relative Humidity",
+        "root_name": "hurs",
+        "branding_label": "tavg-h2m-hxy-u",
+        "standard_name": "relative_humidity",
+        "description": "Relative humidity at 2m above the surface",
+        "url": "latest/u/80ac3193-a698-11ef-914a-613c0433d878.html",
+        "history": "Removed in version v1.2.2.5",
+        "state": false
+    },
+    "80ac31b4-a698-11ef-914a-613c0433d878": {
+        "cmip7_name": "atmos.pr.tavg-u-hxy-u.1hr.30S-90S",
+        "cmip6_name": "E1hr.prSouth30",
+        "long_name": "Precipitation",
+        "root_name": "pr",
+        "branding_label": "tavg-u-hxy-u",
+        "standard_name": "precipitation_flux",
+        "description": "Total precipitation flux",
+        "url": "latest/u/80ac31b4-a698-11ef-914a-613c0433d878.html",
+        "history": "Removed in version v1.2.2.5",
+        "state": false
+    },
+    "80ac31ba-a698-11ef-914a-613c0433d878": {
+        "cmip7_name": "atmos.ps.tpt-u-hxy-u.1hr.30S-90S",
+        "cmip6_name": "E1hr.psSouth30",
+        "long_name": "Surface Air Pressure",
+        "root_name": "ps",
+        "branding_label": "tpt-u-hxy-u",
+        "standard_name": "surface_air_pressure",
+        "description": "Surface pressure.",
+        "url": "latest/u/80ac31ba-a698-11ef-914a-613c0433d878.html",
+        "history": "Removed in version v1.2.2.5",
+        "state": false
+    },
+    "80ac31c2-a698-11ef-914a-613c0433d878": {
+        "cmip7_name": "atmos.rlds.tavg-u-hxy-u.1hr.30S-90S",
+        "cmip6_name": "E1hr.rldsSouth30",
+        "long_name": "Surface Downwelling Longwave Radiation",
+        "root_name": "rlds",
+        "branding_label": "tavg-u-hxy-u",
+        "standard_name": "surface_downwelling_longwave_flux_in_air",
+        "description": "Surface Downwelling Longwave Radiation",
+        "url": "latest/u/80ac31c2-a698-11ef-914a-613c0433d878.html",
+        "history": "Removed in version v1.2.2.5",
+        "state": false
+    },
+    "80ac31c8-a698-11ef-914a-613c0433d878": {
+        "cmip7_name": "atmos.rsds.tavg-u-hxy-u.1hr.30S-90S",
+        "cmip6_name": "E1hr.rsdsSouth30",
+        "long_name": "Surface Downwelling Shortwave Radiation",
+        "root_name": "rsds",
+        "branding_label": "tavg-u-hxy-u",
+        "standard_name": "surface_downwelling_shortwave_flux_in_air",
+        "description": "Hourly downward solar radiation flux at the surface",
+        "url": "latest/u/80ac31c8-a698-11ef-914a-613c0433d878.html",
+        "history": "Removed in version v1.2.2.5",
+        "state": false
+    },
+    "80ac31d0-a698-11ef-914a-613c0433d878": {
+        "cmip7_name": "atmos.sfcWind.tavg-h10m-hxy-u.1hr.30S-90S",
+        "cmip6_name": "E1hr.sfcWindSouth30",
+        "long_name": "Near-Surface Wind Speed",
+        "root_name": "sfcWind",
+        "branding_label": "tavg-h10m-hxy-u",
+        "standard_name": "wind_speed",
+        "description": "Hourly near-surface wind speed at 10m above the ground",
+        "url": "latest/u/80ac31d0-a698-11ef-914a-613c0433d878.html",
+        "history": "Removed in version v1.2.2.5",
+        "state": false
+    },
+    "80ac31e0-a698-11ef-914a-613c0433d878": {
+        "cmip7_name": "atmos.tas.tavg-h2m-hxy-u.1hr.30S-90S",
+        "cmip6_name": "AERhr.tasSouth30",
+        "long_name": "Near-Surface Air Temperature",
+        "root_name": "tas",
+        "branding_label": "tavg-h2m-hxy-u",
+        "standard_name": "air_temperature",
+        "description": "Hourly Temperature at 2m above the surface",
+        "url": "latest/u/80ac31e0-a698-11ef-914a-613c0433d878.html",
+        "history": "Removed in version v1.2.2.5",
+        "state": false
+    },
+    "80ac31ae-a698-11ef-914a-613c0433d878": {
+        "cmip7_name": "land.orog.ti-u-hxy-u.fx.30S-90S",
+        "cmip6_name": "fx.orogSouth30",
+        "long_name": "Surface Altitude",
+        "root_name": "orog",
+        "branding_label": "ti-u-hxy-u",
+        "standard_name": "surface_altitude",
+        "description": "height above the geoid; as defined here, \"the geoid\" is a surface of constant geopotential that, if the ocean were at rest, would coincide with mean sea level. Under this definition, the geoid changes as the mean volume of the ocean changes (e.g., due to glacial melt, or global warming of the ocean).  Reported here is the height above the present-day geoid (0.0 over ocean).",
+        "url": "latest/u/80ac31ae-a698-11ef-914a-613c0433d878.html",
+        "history": "Removed in version v1.2.2.5",
+        "state": false
     },
     "83bbfbbf-7f07-11ef-9308-b1dd71e64bec": {
         "cmip7_name": "land.tas.tavg-h2m-hxy-u.1hr.glb",

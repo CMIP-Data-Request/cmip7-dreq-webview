@@ -22,6 +22,7 @@ version = "v1.2.2.1"
 version = "v1.2.2.2"
 version = "v1.2.2.3"
 version = "v1.2.2.4"
+version = "v1.2.2.5"
 
 
 if len(sys.argv) > 1:
@@ -38,6 +39,7 @@ prev_version = {
     "v1.2.2.2": "v1.2.2.1",
     "v1.2.2.3": "v1.2.2.2",
     "v1.2.2.4": "v1.2.2.3",
+    "v1.2.2.5": "v1.2.2.4",
 }
 prev_version = prev_version[version]
 
