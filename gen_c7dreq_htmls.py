@@ -731,6 +731,66 @@ with open(vi_file, "w") as f:
 print(f"Variable index written to '{vi_file}'")
 
 
+# === Carry forward removed records of all categories ===
+# Any UID published in the previous version that no longer resolves gets a minimal
+# placeholder page (basic header + removal note + link), so that established UIDs
+# always resolve. Variables are excluded here as they are handled in more detail
+# above. The state is kept in the html files themselves (no extra tracking file):
+# placeholders are detected via REMOVED_NOTE and their link target is propagated,
+# so the link always points to the last version holding the full record.
+REMOVED_NOTE = (
+    "This record was removed with the current or with a previous release"
+)
+H1_RE = re.compile(r"<h1>(.+?) record: (.+?) \(v[^)]*\)</h1>")
+# Match the removal-note link in both wordings: the variables placeholders use
+#  'previous version', the generic placeholders name the linked version
+LINK_RE = re.compile(r"Link to record of (?:previous version|version v[^:]*): <a href='([^']+)'")
+if prev_version:
+    prev_u = os.path.join(BASE_OUTPUT, prev_version, "u")
+    cur_u = os.path.join(OUTPUT_DIR, "u")
+    n_carried = 0
+    for fname in sorted(os.listdir(prev_u)):
+        if not fname.endswith(".html") or os.path.exists(os.path.join(cur_u, fname)):
+            continue
+        # Ignore 'default_<number>' UIDs: they are temporary per-release IDs
+        #  and may denote a different object in another release
+        if fname.startswith("default"):
+            continue
+        with open(os.path.join(prev_u, fname), encoding="utf-8") as f:
+            prev_html = f.read()
+        h1_match = H1_RE.search(prev_html)
+        if not h1_match:
+            print(f"WARNING: Could not parse removed record '{prev_u}/{fname}' - skipped")
+            continue
+        category, label = h1_match.group(1), h1_match.group(2)
+        # Link to the last version holding the full record
+        target = f"../../{prev_version}/u/{fname}"
+        if REMOVED_NOTE in prev_html:
+            link_match = LINK_RE.search(prev_html)
+            if link_match:
+                target = link_match.group(1)
+        else:
+            print(
+                f"INFO: {category} record {label} ({fname}) removed in version "
+                + version
+            )
+        # Name the linked version in the note ('../../<version>/u/<fname>')
+        target_version = target.split("/")[2]
+        html = f"<h1>{category} record: {label} ({version})</h1>"
+        html += f"<p><a href='../{category}.html'>Back to {category}</a> | <a href='../index.html'>Category Index</a></p>"
+        html += f"<script src='../../check_deprecated.js' data-dreq-version=\"{version}\" data-dreq-latest=\"../../dreq_latest_version.txt\"></script>"
+        html += f"<p><strong>Note:</strong> {REMOVED_NOTE} of the CMIP7 Data Request. Link to record of version {target_version}: <a href='{target}'>LINK</a></p>"
+        html += f"<p><a href='../{category}.html'>Back to {category}</a> | <a href='../index.html'>Category Index</a></p>"
+        write_file(
+            f"u/{fname}",
+            html,
+            title=f"{category} record: {label} ({version})",
+            style_location="../../",
+        )
+        n_carried += 1
+    print(f"Placeholder pages for {n_carried} removed records written to '{cur_u}/'")
+
+
 # === Data Request Changes - Requests ===
 drchfile = f"{OUTPUT_DIR}/../dreq_changes.json"
 dreqvfile = f"data_request_req_{version}.json"
