@@ -51441,5 +51441,49 @@
         "80ac31e0-a698-11ef-914a-613c0433d878": {
             "state": "removed"
         }
+    },
+    "v1.2.2.6": {
+        "6f6b2106-9acb-11e6-b7ee-ac72891c3257": {
+            "comment": {
+                "old": "Net upward flux of methane (NH4) from wetlands (areas where water covers the soil, or is present either at or near the surface of the soil all year or for varying periods of time during the year, including during the growing season).",
+                "new": "Net upward flux of methane (CH4) from wetlands (areas where water covers the soil, or is present either at or near the surface of the soil all year or for varying periods of time during the year, including during the growing season)."
+            },
+            "state": ""
+        },
+        "8b8224ae-4a5b-11e6-9cd2-ac72891c3257": {
+            "comment": {
+                "old": "Biological emissions (methanogenesis) of methane (NH4) from wetlands (areas where water covers the soil, or is present either at or near the surface of the soil all year or for varying periods of time during the year, including during the growing season).",
+                "new": "Biological emissions (methanogenesis) of methane (CH4) from wetlands (areas where water covers the soil, or is present either at or near the surface of the soil all year or for varying periods of time during the year, including during the growing season)."
+            },
+            "state": ""
+        },
+        "8b822918-4a5b-11e6-9cd2-ac72891c3257": {
+            "comment": {
+                "old": "Biological consumption (methanotrophy) of methane (NH4) by wetlands (areas where water covers the soil, or is present either at or near the surface of the soil all year or for varying periods of time during the year, including during the growing season).",
+                "new": "Biological consumption (methanotrophy) of methane (CH4) by wetlands (areas where water covers the soil, or is present either at or near the surface of the soil all year or for varying periods of time during the year, including during the growing season)."
+            },
+            "state": ""
+        },
+        "bab09a7c-e5dd-11e5-8482-ac72891c3257": {
+            "dimensions": {
+                "old": "longitude latitude vegtype time",
+                "new": "longitude latitude modelvegtype time"
+            },
+            "state": "",
+            "processing_note": {
+                "old": "need to explain how to define vegtype.  To facilitate model comparison, it is also requested that the aggregated land cover types called for in lines 28 to 35 be archived (but not in this variable).  Note that if this variable is independent of time, it should be stored only for a single time (user choice).   Note that the \"types\" will be model dependent and for each type there should be a full description of the PFT (plant functional type).  CHANGE SINCE CMIP6 in Cell Methods - CMIP6:area: mean where land over all_area_types time: mean CMIP7:area: time: mean,\nCHANGE SINCE CMIP6 in Cell Methods - CMIP6:area: mean where land over all_area_types time: mean CMIP7:area: time: mean,",
+                "new": "need to explain how to define vegtype.  To facilitate model comparison, it is also requested that the aggregated land cover types called for in lines 28 to 35 be archived (but not in this variable).  Note that if this variable is independent of time, it should be stored only for a single time (user choice).   Note that the \"types\" will be model dependent and for each type there should be a full description of the PFT (plant functional type).  CHANGE SINCE CMIP6 in Cell Methods - CMIP6:area: mean where land over all_area_types time: mean CMIP7:area: time: mean,\nCHANGE SINCE CMIP6 in Cell Methods - CMIP6:area: mean where land over all_area_types time: mean CMIP7:area: time: mean,\nCHANGE SINCE CMIP6 in Dimensions - CMIP6:longitude latitude vegtype time CMIP7:longitude latitude modelvegtype time,"
+            }
+        },
+        "f2fb0ac8-c38d-11e6-abc1-1b922e5e1118": {
+            "comment": {
+                "old": "Downward heat flux at snow botton",
+                "new": "Downward heat flux at snow bottom"
+            },
+            "state": ""
+        },
+        "bab34628-e5dd-11e5-8482-ac72891c3257": {
+            "state": "added"
+        }
     }
 }

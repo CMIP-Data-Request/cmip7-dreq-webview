@@ -160,7 +160,7 @@ h2 { margin-top: 2rem; border-bottom: 2px solid #ccc; padding-bottom: 0.2rem; }
         <option value="cmip6_table">cmip6_table</option>
         <option value="physical_parameter_name">physical_parameter_name</option>
         <option value="variableRootDD">variableRootDD</option>
-        <option value="branding_label">branding_label</option>
+        <option value="branding_suffix">branding_suffix</option>
         <option value="branded_variable_name">branded_variable_name</option>
         <option value="region">region</option>
         <option value="cmip6_compound_name">cmip6_compound_name</option>
@@ -222,7 +222,8 @@ function renderChanges() {
         for(const [uid, changes] of Object.entries(vars)) {
             if(uidText && uidText!==uid) continue;
             const attrs = Object.keys(changes).filter(a=>!(a==='state' && changes[a]===''));
-            const filteredAttrs = attrs.filter(a=>attrFilter==='all' || a.toLowerCase()===attrFilter);
+            // 'branding_label' was renamed to 'branding_suffix'; treat as synonyms
+            const filteredAttrs = attrs.filter(a=>attrFilter==='all' || a.toLowerCase()===attrFilter || (attrFilter==='branding_suffix' && a.toLowerCase()==='branding_label'));
             if(filteredAttrs.length===0) continue;
 
             let matchSearch = true;

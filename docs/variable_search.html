@@ -97,7 +97,7 @@
     <input id="f_cmip6" placeholder="Search cmip6 name…">
     <input id="f_long" placeholder="Search long_name…">
     <input id="f_root" placeholder="Search root_name…">
-    <input id="f_brand" placeholder="Search branding_label…">
+    <input id="f_brand" placeholder="Search branding_suffix…">
     <input id="f_std" placeholder="Search standard_name…">
     <input id="f_desc" placeholder="Search description…">
 </div>
@@ -109,7 +109,7 @@
             <th>cmip6 name</th>
             <th>long_name</th>
             <th>root_name</th>
-            <th>branding_label</th>
+            <th>branding_suffix</th>
             <th>standard_name</th>
             <th>description</th>
         </tr>
@@ -137,7 +137,7 @@ function loadTable() {
             <td>${v.cmip6_name || ""}</td>
             <td>${v.long_name || ""}</td>
             <td>${v.root_name || ""}</td>
-            <td>${v.branding_label || ""}</td>
+            <td>${v.branding_suffix || v.branding_label || ""}</td>
             <td>${v.standard_name || ""}</td>
             <td>${v.description || ""}</td>
         `;
@@ -149,7 +149,7 @@ function loadTable() {
                 cmip6: (v.cmip6_name || "").toLowerCase(),
                 root: (v.root_name || "").toLowerCase(),
                 long: (v.long_name || "").toLowerCase(),
-                brand: (v.branding_label || "").toLowerCase(),
+                brand: (v.branding_suffix || v.branding_label || "").toLowerCase(),
                 std: (v.standard_name || "").toLowerCase(),
                 desc: (v.description || "").toLowerCase()
             }

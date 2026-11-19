@@ -23,6 +23,7 @@ version = "v1.2.2.2"
 version = "v1.2.2.3"
 version = "v1.2.2.4"
 version = "v1.2.2.5"
+version = "v1.2.2.6"
 
 
 if len(sys.argv) > 1:
@@ -40,6 +41,7 @@ prev_version = {
     "v1.2.2.3": "v1.2.2.2",
     "v1.2.2.4": "v1.2.2.3",
     "v1.2.2.5": "v1.2.2.4",
+    "v1.2.2.6": "v1.2.2.5",
 }
 prev_version = prev_version[version]
 
@@ -649,7 +651,7 @@ for var in sorted(
             and "_" in varatts["branded_variable_name"]
             else "undef"
         ),
-        "branding_label": (
+        "branding_suffix": (
             varatts["branded_variable_name"].split("_")[1]
             if "branded_variable_name" in varatts
             and "_" in varatts["branded_variable_name"]
@@ -905,7 +907,7 @@ vkeys = sorted(
         "cmip6_table",
         "physical_parameter_name",
         "variableRootDD",
-        "branding_label",
+        "branding_suffix",
         "branded_variable_name",
         "region",
         "cmip6_compound_name",
@@ -935,6 +937,10 @@ else:
     vpinfo = dict()
 # Variable Info from current version
 vinfo = dq.get_variables_metadata(dc.load(version), version)
+# Treat the renamed attribute 'branding_label' as synonym of 'branding_suffix'
+for atts in list(vinfo.values()) + list(vpinfo.values()):
+    if "branding_label" in atts:
+        atts.setdefault("branding_suffix", atts.pop("branding_label"))
 with open(vinfofile, "w") as f:
     json.dump(vinfo, f, indent=4)
     print(f"Data Request variable info written to '{vinfofile}'")

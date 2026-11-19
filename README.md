@@ -10,9 +10,10 @@ for variable search and data request changes hosted via GitHub Pages.
 
 Direct links to the CMIP7 Data Request web views of the various data request versions:
 - https://CMIP-Data-Request.github.io/cmip7-dreq-webview/latest/index.html (Fixed link to the latest version)
-- https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.2.2.5/index.html (Direct Link to v1.2.2.5, the current latest version)
+- https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.2.2.6/index.html (Direct Link to v1.2.2.6, the current latest version)
 
 Old versions:
+- [1.2.2.5](https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.2.2.5/index.html)
 - [1.2.2.4](https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.2.2.4/index.html)
 - [1.2.2.3](https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.2.2.3/index.html)
 - [1.2.2.2](https://CMIP-Data-Request.github.io/cmip7-dreq-webview/v1.2.2.2/index.html)
